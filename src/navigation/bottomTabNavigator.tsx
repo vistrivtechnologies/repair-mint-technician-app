@@ -1,0 +1,175 @@
+import React, { FC, useContext } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image } from "react-native";
+import {
+  HomeScreen,
+  BookingListScreen,
+  InventryScreen,
+  NotificationScreen,
+  ProfileScreen,
+} from "../screens";
+import { Colors, Fonts, Images } from "../constant";
+import Icon from "../constant/Icon";
+import { UserData, UserDataContext } from "../context/userDataContext";
+import { TextView } from "../components";
+import { moderateScale, scale } from "react-native-size-matters";
+
+const BottomStackNavigator: FC = () => {
+  const Tab = createBottomTabNavigator();
+  const { isDarkMode } = useContext<UserData>( UserDataContext );
+  const background =
+    isDarkMode === "dark" ? Colors.PRIMARY[ 400 ] : Colors.PRIMARY[ 300 ];
+
+  const getIconColor = ( focused: boolean ) =>
+    focused ? Colors.PRIMARY[ 100 ] : Colors.FLOATINGINPUT[ 100 ];
+
+  const getLabel = ( focused: boolean, title: string ) => (
+    <TextView
+      style={ {
+        fontSize: focused ? scale( 9 ) : scale( 8 ),
+        fontFamily: Fonts.Medium,
+        color: focused ? Colors.PRIMARY[ 100 ] : Colors.FLOATINGINPUT[ 100 ],
+        marginBottom: 4
+      } }
+    >
+      { focused ? title.toUpperCase() : title }
+    </TextView>
+  );
+
+  return (
+    <Tab.Navigator
+      screenOptions={ {
+        tabBarStyle: {
+          backgroundColor: background,
+          borderTopColor: "transparent",
+          borderTopWidth: 0,
+        },
+        headerShown: false,
+      } }
+    >
+      {/* Example with Icon */ }
+      <Tab.Screen
+        name="HomeScreen"
+        component={ HomeScreen }
+        options={ {
+          tabBarLabel: ( { focused } ) => getLabel( focused, "Home" ),
+          tabBarIcon: ( { focused } ) => (
+            <Image
+              source={
+                focused
+                  ? Images.ic_HomeFill
+                  : Images.ic_Home
+              }
+              style={ {
+                width: 24,
+                height: 24,
+                tintColor: getIconColor( focused ),
+              } }
+              resizeMode="contain"
+            />
+          ),
+
+
+        } }
+      />
+
+      {/* Example with Image */ }
+      <Tab.Screen
+        name="BookingListScreen"
+        component={ BookingListScreen }
+        options={ {
+          tabBarLabel: ( { focused } ) => getLabel( focused, "WORKLIST" ),
+          tabBarIcon: ( { focused } ) => (
+            <Image
+              source={
+                focused
+                  ? Images.ic_TicketFill
+                  : Images.ic_Ticket
+              }
+              style={ {
+                width: 24,
+                height: 24,
+                tintColor: getIconColor( focused ),
+              } }
+              resizeMode="contain"
+            />
+          ),
+        } }
+      />
+
+       <Tab.Screen
+        name="InventryScreen"
+        component={ InventryScreen }
+        options={ {
+          tabBarLabel: ( { focused } ) => getLabel( focused, "INVENTORY" ),
+          tabBarIcon: ( { focused } ) => (
+            <Image
+              source={
+                focused
+                  ? Images.ic_InventoryFill
+                  : Images.ic_Inventory
+              }
+              style={ {
+                width: 24,
+                height: 24,
+                tintColor: getIconColor( focused ),
+              } }
+              resizeMode="contain"
+            />
+          ),
+        } }
+      />
+
+      {/* Another with Icon */ }
+      <Tab.Screen
+        name="Notification"
+        component={ NotificationScreen }
+        options={ {
+          tabBarLabel: ( { focused } ) => getLabel( focused, "NOTIFICATION" ),
+          tabBarIcon: ( { focused } ) => (
+            <Image
+              source={
+                focused
+                  ? Images.ic_NotificationFill
+                  : Images.ic_Notification
+
+              }
+              style={ {
+                width: 24,
+                height: 24,
+                tintColor: getIconColor( focused ),
+              } }
+              resizeMode="contain"
+            />
+          ),
+        } }
+      />
+
+      {/* Another with Image */ }
+      <Tab.Screen
+        name="Profile"
+        component={ ProfileScreen }
+        options={ {
+          tabBarLabel: ( { focused } ) => getLabel( focused, "PROFILE" ),
+          tabBarIcon: ( { focused } ) => (
+            <Image
+              source={
+                focused
+                  ? Images.ic_profileFill
+                  : Images.ic_profile
+              }
+              style={ {
+                width: 24,
+                height: 24,
+                tintColor: getIconColor( focused ),
+              } }
+              resizeMode="contain"
+            />
+          ),
+        } }
+      />
+    </Tab.Navigator>
+  );
+};
+
+export default BottomStackNavigator;

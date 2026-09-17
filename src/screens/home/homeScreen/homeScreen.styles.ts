@@ -1,0 +1,183 @@
+import {StyleSheet} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {Fonts, Colors} from '../../../constant';
+import {moderateScale, scale} from 'react-native-size-matters';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.PRIMARY[300],
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  profile: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  avatar: {
+    width: '100%',
+    height: '100%',
+  },
+  greeting: {
+    fontSize: scale(18),
+    fontFamily: Fonts.SemiBold,
+    color: Colors.HEADING,
+    marginTop: hp(0.5),
+  },
+  subGreeting: {
+    fontSize: scale(12),
+    color: Colors.BODY,
+    marginBottom: 20,
+    fontFamily: Fonts.Medium,
+  },
+  progressCard: {
+    backgroundColor: '#3F3D56',
+    borderRadius: 12,
+    padding: hp(2),
+    marginBottom: hp(2),
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    elevation: 3,
+  },
+  progressCard1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 16,
+    marginVertical: 10,
+    borderRadius: 12,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 4,
+  },
+  progressText: {
+    color: '#fff',
+    fontFamily: Fonts.SemiBold,
+    fontSize: scale(14),
+  },
+
+  progressDetails: {
+    color: '#fff',
+    fontFamily: Fonts.Medium,
+    marginTop: 5,
+  },
+  statsContainer: {},
+  statCard: {
+    width: wp(42),
+    borderRadius: 12,
+    padding: hp(2),
+    marginVertical: hp(1),
+    elevation: 3,
+  },
+  statCount: {
+    color: '#fff',
+    fontSize: scale(16),
+    fontFamily: Fonts.SemiBold,
+  },
+  statTitle: {
+    color: '#fff',
+    fontSize: scale(12),
+    fontFamily: Fonts.SemiBold,
+    marginTop: 5,
+  },
+  sectionTitle: {
+    fontSize: scale(14),
+    fontFamily: Fonts.SemiBold,
+    color: Colors.HEADING,
+    margin: hp(1),
+  },
+  noWorkordersCon: {
+    fontSize: scale(14),
+    margin: hp(1),
+    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
+    borderRadius: 12,
+    padding: hp(3),
+  },
+  noWorkorders: {
+    fontSize: scale(14),
+    fontFamily: Fonts.SemiBold,
+    color: Colors.LIGHT_GREY,
+    margin: hp(1),
+    textAlign: 'center',
+    padding: hp(3),
+  },
+  workOrderCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: hp(1.5),
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
+    marginTop: hp(1),
+  },
+  tag: {
+    width: 32,
+    height: 32,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15,
+    backgroundColor: '#F44336',
+  },
+  tagText: {
+    fontSize: 12,
+    color: '#fff',
+    fontFamily: Fonts.SemiBold,
+    textTransform: 'uppercase',
+  },
+  workOrderTitle: {
+    fontSize: scale(13),
+    color: Colors.HEADING,
+    fontFamily: Fonts.SemiBold,
+    marginBottom: hp(0.5),
+    paddingRight: wp(9),
+  },
+  recentsTitle: {
+    fontSize: scale(13),
+    color: Colors.HEADING,
+    fontFamily: Fonts.SemiBold,
+    marginBottom: hp(0.5),
+  },
+  workOrderZone: {
+    fontSize: scale(10),
+    color: Colors.BODY,
+    fontFamily: Fonts.Medium,
+    paddingRight: wp(9),
+  },
+  recentCard: {
+    backgroundColor: '#fff',
+    padding: wp(4),
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
+    marginBottom: 10,
+    width: wp(42.6),
+    margin: wp(1.5),
+  },
+  recentHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
+  recentStatus: {
+    fontFamily: Fonts.Medium,
+    fontSize: scale(9),
+    textTransform: 'capitalize',
+  },
+});
+
+export default styles;
