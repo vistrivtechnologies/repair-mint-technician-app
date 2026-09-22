@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.LIGHT_GREY_2,
   },
   darkContainer: {
-    backgroundColor: Colors.GREY,
+    backgroundColor: Colors.PRIMARY[300],
   },
   mainContainer: {
     width: wp(90),
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   activeTabDark: {
-    backgroundColor: Colors.GREY,
+    backgroundColor: Colors.WHITE,
   },
   tabText: {
     fontFamily: Fonts.Medium,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   activeTabText: {
-    color: Colors.BLACK,
+    color: Colors.HEADING,
   },
   activeTabTextDark: {
     color: Colors.WHITE,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: Fonts.SemiBold,
     fontSize: moderateScale(16),
-    color: Colors.BLACK,
+    color: Colors.HEADING,
     marginBottom: moderateScale(4),
   },
   darkText: {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   resetSearchText: {
     fontFamily: Fonts.Medium,
     fontSize: moderateScale(14),
-    color: Colors.BLACK,
+    color: Colors.HEADING,
   },
   productRightSection: {
     flex: 1,
@@ -195,6 +195,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(12),
     paddingVertical: moderateScale(6),
     borderRadius: moderateScale(6),
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
   },
 
   addButtonText: {
@@ -221,7 +224,7 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: moderateScale(20),
     fontFamily: Fonts.SemiBold,
-    color: Colors.BLACK,
+    color: Colors.HEADING,
     marginBottom: moderateScale(8),
   },
   productDescription: {

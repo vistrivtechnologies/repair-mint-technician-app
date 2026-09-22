@@ -5,12 +5,12 @@ import { moderateScale } from "react-native-size-matters";
 
 const styles = StyleSheet.create( {
   buttonContainer: {
-    borderRadius: 12,
-    height: hp(6.5),
+    borderRadius: 8,
+    height: hp(6.8),
     width: wp( 90 ),
     flexDirection: 'row',
     alignSelf: "center",
-    backgroundColor: Colors.PRIMARY[ 100 ],
+    backgroundColor: Colors.PRIMARY[100],
   },
 
 
@@ -19,11 +19,11 @@ const styles = StyleSheet.create( {
     flexDirection: "row",
   },
   buttonText: {
-    color: Colors.PRIMARY[ 300 ],
+    color: Colors.WHITE,
     fontSize: moderateScale( 14 ),
     marginLeft: hp( 1 ),
     marginRight: hp( 1 ),
-    fontFamily: Fonts.SemiBold,
+    fontFamily: Fonts.Bold,
     lineHeight: 24,
   },
 

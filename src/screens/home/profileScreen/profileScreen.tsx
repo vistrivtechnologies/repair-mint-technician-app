@@ -74,6 +74,7 @@ const ProfileScreen: React.FC = () => {
         <Ionicons
           name="timer-outline"
           size={28}
+          color={Colors.SECONDARY[100]}
         />
       )
       ,
@@ -109,7 +110,7 @@ const ProfileScreen: React.FC = () => {
             <TouchableOpacity
               style={styles.editButton}
               onPress={handleEditProfile}>
-              <Icon family="AntDesign" name="edit" style={styles.editIcon} />
+              <Icon family="MaterialCommunityIcons" name="pencil-outline" style={styles.editIcon} />
             </TouchableOpacity>
           </View>
 

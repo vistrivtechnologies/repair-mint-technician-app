@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {Fonts, Colors} from '../../../constant';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {scale} from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: hp(1),
   },
   profile: {
     width: 40,
@@ -27,26 +28,26 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   greeting: {
-    fontSize: scale(18),
-    fontFamily: Fonts.SemiBold,
+    fontSize: scale(26),
+    fontFamily: Fonts.Bold,
     color: Colors.HEADING,
     marginTop: hp(0.5),
   },
   subGreeting: {
     fontSize: scale(12),
     color: Colors.BODY,
-    marginBottom: 20,
+    marginBottom: 18,
     fontFamily: Fonts.Medium,
   },
   progressCard: {
-    backgroundColor: '#3F3D56',
-    borderRadius: 12,
+    backgroundColor: Colors.PRIMARY[100],
+    borderRadius: 10,
     padding: hp(2),
     marginBottom: hp(2),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    elevation: 3,
+    elevation: 2,
   },
   progressCard1: {
     flexDirection: 'row',
@@ -75,25 +76,40 @@ const styles = StyleSheet.create({
   statsContainer: {},
   statCard: {
     width: wp(42),
-    borderRadius: 12,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 10,
     padding: hp(2),
     marginVertical: hp(1),
-    elevation: 3,
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
+    elevation: 1,
+  },
+  statTopRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  statIconTile: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   statCount: {
-    color: '#fff',
-    fontSize: scale(16),
-    fontFamily: Fonts.SemiBold,
+    color: Colors.HEADING,
+    fontSize: scale(22),
+    fontFamily: Fonts.Bold,
   },
   statTitle: {
-    color: '#fff',
+    color: Colors.BODY,
     fontSize: scale(12),
-    fontFamily: Fonts.SemiBold,
+    fontFamily: Fonts.Medium,
     marginTop: 5,
   },
   sectionTitle: {
-    fontSize: scale(14),
-    fontFamily: Fonts.SemiBold,
+    fontSize: scale(17),
+    fontFamily: Fonts.Bold,
     color: Colors.HEADING,
     margin: hp(1),
   },
@@ -124,6 +140,14 @@ const styles = StyleSheet.create({
     borderColor: Colors.BORDERCOLOR,
     marginTop: hp(1),
   },
+  headerIconTile: {
+    width: 42,
+    height: 42,
+    borderRadius: 13,
+    backgroundColor: Colors.PRIMARY[600],
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   tag: {
     width: 32,
     height: 32,
@@ -131,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 15,
-    backgroundColor: '#F44336',
+    backgroundColor: Colors.SECONDARY[100],
   },
   tagText: {
     fontSize: 12,

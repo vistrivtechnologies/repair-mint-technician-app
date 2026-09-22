@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.Medium,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     padding: hp(2),
     borderRadius: 10,
     marginBottom: 12,
@@ -139,21 +139,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   rejectButton: {
-    backgroundColor: '#EF4444',
+    backgroundColor: Colors.STATUS.DANGER,
     paddingVertical: hp(1.4),
     paddingHorizontal: wp(7),
     borderRadius: 7,
     justifyContent: 'center',
   },
   onHoldButton: {
-    backgroundColor: '#F4F4F4',
+    backgroundColor: Colors.LIGHT_GREY_3,
     paddingVertical: hp(1.4),
     paddingHorizontal: wp(7),
     borderRadius: 7,
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontSize: scale(11),
     fontFamily: Fonts.SemiBold,
     textAlign: 'center',

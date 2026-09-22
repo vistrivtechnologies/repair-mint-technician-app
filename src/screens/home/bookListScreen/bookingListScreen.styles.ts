@@ -29,7 +29,7 @@ const styles = StyleSheet.create( {
   searchInput: {
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     paddingHorizontal: 16,
     marginBottom: 10,
   },
@@ -43,9 +43,12 @@ const styles = StyleSheet.create( {
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 7,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     borderColor: Colors.BORDERCOLOR,
     borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
   },
   countText: {
     marginBottom: 10,
@@ -66,7 +69,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   circle: {
-    backgroundColor: '#e9425a',
+    backgroundColor: Colors.STATUS.DANGER,
     width: 36,
     height: 36,
     borderRadius: 18,
@@ -80,7 +83,7 @@ const styles = StyleSheet.create( {
   },
   startedText: {
     fontSize: 12,
-    color: '#888',
+    color: Colors.BODY,
   },
   title: {
     fontSize: scale( 13 ),
@@ -89,7 +92,7 @@ const styles = StyleSheet.create( {
     marginVertical: 6,
   },
   infoBox: {
-    backgroundColor: '#f7f7f7',
+    backgroundColor: Colors.LIGHT_GREY_2,
     padding: 10,
     borderRadius: 8,
     marginBottom: 8,
@@ -152,12 +155,12 @@ const styles = StyleSheet.create( {
     textTransform: 'capitalize',
   },
   inProgress: {
-    backgroundColor: '#e1d9fd',
-    color: '#6c47ff',
+    backgroundColor: Colors.STATUS.INFO_SOFT,
+    color: Colors.STATUS.INFO,
   },
   onHold: {
-    backgroundColor: '#fff3cd',
-    color: '#ff9900',
+    backgroundColor: Colors.STATUS.WARNING_SOFT,
+    color: Colors.STATUS.WARNING,
   },
   timeSpent: {
     fontSize: 12,
@@ -166,7 +169,7 @@ const styles = StyleSheet.create( {
     marginLeft: wp( 5 )
   },
   priorityCircle: {
-    backgroundColor: '#e9425a',
+    backgroundColor: Colors.STATUS.DANGER,
     width: 24,
     height: 24,
     borderRadius: 12,

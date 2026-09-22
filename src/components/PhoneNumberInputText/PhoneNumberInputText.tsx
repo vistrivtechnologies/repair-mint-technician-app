@@ -145,27 +145,27 @@ const CustomPhoneNumberInput: React.FC<CustomPhoneNumberInputFieldProps> = ({
 
 const styles = StyleSheet.create({
   labelText: {
-    color: Colors.PRIMARY[200],
+    color: Colors.HEADING,
     fontFamily: Fonts.Medium,
-    fontSize: scale(12),
+    fontSize: scale(11),
     marginBottom: moderateVerticalScale(7),
     marginLeft: wp(0.5),
-    fontWeight: '500',
+    letterSpacing: 0.4,
   },
   textBoxContainer: {
     backgroundColor: Colors.LIGHT_GREY_2,
-    borderRadius: moderateScale(8),
+    borderRadius: moderateScale(6),
     flexDirection: 'row',
     paddingVertical: Platform.OS === 'ios' ? hp(1) : hp(0.5),
     paddingHorizontal: wp(1.5),
-    borderWidth: 1.5,
+    borderWidth: 1,
   },
   inputBoxText: {
     fontSize: moderateScale(13),
     fontWeight: '500',
     marginLeft: moderateScale(10),
     flex: 1,
-    color: Colors.BLACK,
+    color: Colors.HEADING,
     fontFamily: Fonts.Regular,
   },
   validationTextStyle: {
