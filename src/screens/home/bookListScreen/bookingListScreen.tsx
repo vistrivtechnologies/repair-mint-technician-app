@@ -15,7 +15,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {HomeStackProps} from '../../../@types';
 import {useNavigation} from '@react-navigation/native';
 import {UserData, UserDataContext} from '../../../context/userDataContext';
-import {Colors, Fonts} from '../../../constant';
+import {Colors, Fonts, Images} from '../../../constant';
 import {Header, TextView} from '../../../components';
 import {
   heightPercentageToDP as hp,
