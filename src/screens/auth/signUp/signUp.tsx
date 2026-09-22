@@ -56,7 +56,8 @@ const SignUp: FC = () => {
   const [otpModalVisible, setOtpModalVisible] = useState<boolean>(false);
   const GOOGLE_MAPS_API_KEY = 'AIzaSyD2IZNv1mMW3vkvFosW3EdCGgp8_9zTc30';
 
-  const background = isDarkMode === 'dark' ? Colors.PRIMARY[400] : '#fff';
+  const background =
+    isDarkMode === 'dark' ? Colors.PRIMARY[400] : Colors.PRIMARY[300];
   const [location, setLocation] = useState<{
     latitude: number;
     longitude: number;

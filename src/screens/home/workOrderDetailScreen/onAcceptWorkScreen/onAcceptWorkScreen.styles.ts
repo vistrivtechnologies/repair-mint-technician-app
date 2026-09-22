@@ -9,7 +9,7 @@ import { scale } from 'react-native-size-matters';
 const styles = StyleSheet.create( {
     container: {
         flex: 1,
-        backgroundColor: '#f4f6fc'
+        backgroundColor: Colors.PRIMARY[300]
     },
     scrollContent: {
         padding: 16,
@@ -23,14 +23,14 @@ const styles = StyleSheet.create( {
         fontWeight: 'bold'
     },
     status: {
-        color: '#1976D2',
+        color: Colors.STATUS.INFO,
         fontWeight: '600'
     },
     woCode: {
         color: '#888'
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.WHITE,
         borderRadius: 10,
         padding: 16,
         marginBottom: 16
@@ -72,8 +72,8 @@ const styles = StyleSheet.create( {
         gap: 10
     },
     badge: {
-        backgroundColor: '#f44336',
-        color: '#fff',
+        backgroundColor: Colors.STATUS.DANGER,
+        color: Colors.WHITE,
         paddingHorizontal: hp( 1 ),
         borderRadius: 4,
         paddingVertical: hp( 0.5 ),
@@ -94,7 +94,7 @@ const styles = StyleSheet.create( {
     },
     startBtn: {
         flexDirection: 'row',
-        backgroundColor: '#4CAF50',
+        backgroundColor: Colors.SECONDARY[100],
         borderRadius: 6,
         alignItems: 'center',
         justifyContent: 'center',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create( {
     },
     uploadBtn: {
         flex: 1,
-        backgroundColor: '#ccc',
+        backgroundColor: Colors.LIGHT_GREY,
         padding: 10,
         borderRadius: 6,
         marginLeft: 5,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create( {
         justifyContent: 'center'
     },
     buttonText: {
-        color: '#000',
+        color: Colors.HEADING,
         fontFamily: Fonts.SemiBold,
         fontSize: scale( 12 ),
         textAlign: 'center',

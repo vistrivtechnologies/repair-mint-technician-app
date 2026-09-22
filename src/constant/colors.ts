@@ -1,41 +1,40 @@
 const Colors = {
-  //color scheme -
   BLACK: '#000',
   WHITE: '#fff',
-  GREY: '#7C8091',
-  LIGHT_GREY: '#D9D9D9',
-  LIGHT_GREY_2: '#F4F6F9',
-  LIGHT_GREY_3: '#ececec',
-  HEADING: "#1C1F34",
-  BODY: "#6C757D",
-  BORDERCOLOR: "#EBEBEB",
+  GREY: '#71808d',
+  LIGHT_GREY: '#dce4e5',
+  LIGHT_GREY_2: '#f5f8f7',
+  LIGHT_GREY_3: '#edf2f1',
+  HEADING: '#092a45',
+  BODY: '#6c7b86',
+  BORDERCOLOR: '#e4ebea',
   PRIMARY: {
-    100: '#7444fd',
-    200: '#6C757D',
-    300: '#F6F7F9',//Background Color
-    400: '#000000',
-    500: '#5a5959',
-    600: '#eff1fb',
-    700: '#dadee9',
-    800: '#e3e3e3cc'
+    100: '#0b2d49',
+    200: '#6c7b86',
+    300: '#f6f8f7',
+    400: '#092a45',
+    500: '#496071',
+    600: '#d9f8e8',
+    700: '#b9f1d3',
+    800: '#e3ecea',
   },
 
   SECONDARY: {
-    100: '#321a8c', //Enable
-    200: '#c1bfbf ', //Disable
-    300: '#5a5959 ', //Input
-    400: '#4B5569',
-    500: '#ECECEC',
-    600: '#ff6b04',
-    700: '#4a4d50',
+    100: '#18a875',
+    200: '#b7c4c6',
+    300: '#f5f8f7',
+    400: '#304b5d',
+    500: '#e8efed',
+    600: '#e6a23c',
+    700: '#4a626f',
   },
   PRIMARYRGB: {
     100: 'rgba(255, 255, 255,0.7)',
   },
   NEUTRAL: {
     100: '#FFFFFF',
-    200: '#ECECEC',
-    300: '#4B5569',
+    200: '#E8EFED',
+    300: '#4B626F',
   },
 
   FLOATINGINPUT: {
@@ -53,6 +52,16 @@ const Colors = {
     100: '#8D0E0E',
     200: '#A12861',
     300: '#e91111',
+  },
+  STATUS: {
+    SUCCESS: '#13b886',
+    SUCCESS_SOFT: '#d9f6e9',
+    WARNING: '#e59b16',
+    WARNING_SOFT: '#fff1d5',
+    INFO: '#3266d5',
+    INFO_SOFT: '#e1ebff',
+    DANGER: '#d84b4b',
+    DANGER_SOFT: '#f8dddd',
   },
   TABBUTTONGREDEIENT: {
     100: '#fa4da4',

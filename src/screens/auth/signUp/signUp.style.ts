@@ -8,7 +8,7 @@ import {scale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.PRIMARY[300],
   },
   profileContainer: {
     backgroundColor: Colors.PRIMARY[100],
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
   },
   imageProfileContainer: {
-    backgroundColor: Colors.PRIMARY[100],
+    backgroundColor: Colors.PRIMARY[700],
     borderRadius: wp(50),
     alignItems: 'center',
     paddingVertical: hp(2.5),
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginTop: hp(2),
-    backgroundColor: '#fff',
+    backgroundColor: Colors.PRIMARY[300],
   },
   inputView: {
     padding: hp(2),
@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
   welcomeTitle: {
     textAlign: 'center',
     color: Colors.HEADING,
-    fontFamily: Fonts.Medium,
-    fontSize: scale(18),
+    fontFamily: Fonts.Bold,
+    fontSize: scale(26),
   },
   instructionTitle: {
     textAlign: 'center',
     color: Colors.BODY,
-    fontFamily: Fonts.Medium,
+    fontFamily: Fonts.Regular,
     fontSize: scale(14),
   },
   InputMainView: {

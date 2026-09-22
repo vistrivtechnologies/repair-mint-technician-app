@@ -15,7 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import {HomeStackProps} from '../../../@types';
 import styles from './homeScreen.styles';
 import {CircularProgress, TextView} from '../../../components';
-import {Colors, Images} from '../../../constant';
+import {Colors} from '../../../constant';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -33,29 +33,29 @@ const statData = [
     id: '1',
     title: 'Critical Worklist',
     count: 3,
-    color: '#F44336',
-    image: Images.ic_warning,
+    color: '#f3b35a',
+    icon: 'alert-circle-outline',
   },
   {
     id: '2',
     title: 'In progress Worklist',
     count: 7,
-    color: '#7E57C2',
-    image: Images.ic_hourglass,
+    color: '#69b7a0',
+    icon: 'progress-clock',
   },
   {
     id: '3',
     title: 'Overdue Worklist',
     count: 5,
-    color: '#FFA726',
-    image: Images.ic_calendar,
+    color: '#75b8d0',
+    icon: 'calendar-clock-outline',
   },
   {
     id: '4',
     title: 'My Plan',
     count: 4,
-    color: '#29B6F6',
-    image: Images.ic_editfile,
+    color: '#82d7b0',
+    icon: 'clipboard-check-outline',
   },
 ];
 
@@ -131,18 +131,17 @@ const HomeScreen: React.FC = () => {
   }, []);
 
   const StatCard = ({item}: {item: any}) => (
-    <View style={[styles.statCard, {backgroundColor: item?.color}]}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    <View style={styles.statCard}>
+      <View style={styles.statTopRow}>
         <Text style={styles.statCount}>{item?.count}</Text>
-        <Image
-          source={item?.image}
-          style={{
-            height: 20,
-            width: 20,
-            resizeMode: 'contain',
-            tintColor: '#fff',
-          }}
-        />
+        <View style={[styles.statIconTile, {backgroundColor: `${item?.color}22`}]}>
+          <Icon
+            family="MaterialCommunityIcons"
+            name={item?.icon}
+            size={21}
+            color={item?.color}
+          />
+        </View>
       </View>
       <Text style={styles.statTitle}>{item?.title}</Text>
     </View>
@@ -165,7 +164,10 @@ const HomeScreen: React.FC = () => {
         <View
           style={[
             styles.tag,
-            {backgroundColor: index % 2 === 0 ? '#F44336' : '#7E57C2'},
+              {
+                backgroundColor:
+                  index % 2 === 0 ? Colors.SECONDARY[100] : '#69b7a0',
+              },
           ]}>
           <Text style={styles.tagText}>
             {item?.serviceRequest?.problemDescription?.slice(0, 2)}
@@ -191,24 +193,24 @@ const HomeScreen: React.FC = () => {
 
   const RecentCard = ({item}: {item: any}) => {
     const statusColors: {[key: string]: string} = {
-      'IN PROGRESS': '#601bd6',
-      'ON HOLD': '#ff9900',
-      completed: '#66BB6A',
-      CRITICAL: '#EF5350',
+      'IN PROGRESS': Colors.SECONDARY[100],
+      'ON HOLD': '#c17b1b',
+      completed: '#21845f',
+      CRITICAL: '#c44949',
     };
 
     const statusBackgroundColors: {[key: string]: string} = {
-      'IN PROGRESS': '#ebe2f9',
-      'ON HOLD': '#fff3cd',
-      completed: '#d4fad6',
-      CRITICAL: '#f3bebd',
+      'IN PROGRESS': Colors.PRIMARY[600],
+      'ON HOLD': '#fff1d5',
+      completed: '#d9f2e5',
+      CRITICAL: '#f8dddd',
     };
 
     const statusColor =
-      statusColors[item?.workCompletionStatus?.toLowerCase()] || '#66BB6A';
+      statusColors[item?.workCompletionStatus?.toUpperCase()] || '#21845f';
     const statusbgColour =
-      statusBackgroundColors[item?.workCompletionStatus?.toLowerCase()] ||
-      '#d4fad6';
+      statusBackgroundColors[item?.workCompletionStatus?.toUpperCase()] ||
+      Colors.PRIMARY[600];
 
     return (
       <View style={styles.recentCard}>
@@ -227,7 +229,7 @@ const HomeScreen: React.FC = () => {
             </TextView>
           </View>
 
-          <View style={[styles.tag, {backgroundColor: '#ef9a9a'}]}>
+          <View style={[styles.tag, {backgroundColor: '#69b7a0'}]}>
             <TextView style={styles.tagText}>
               {item?.serviceRequest?.problemDescription?.slice(0, 2)}
             </TextView>
@@ -267,7 +269,14 @@ const HomeScreen: React.FC = () => {
         <View style={{width: wp(90), alignSelf: 'center'}}>
           {/* Header */}
           <View style={styles.header}>
-            <Icon family="Ionicons" name="grid" size={24} color="black" />
+            <View style={styles.headerIconTile}>
+              <Icon
+                family="MaterialCommunityIcons"
+                name="view-dashboard-outline"
+                size={21}
+                color={Colors.PRIMARY[100]}
+              />
+            </View>
             <View style={styles.profile}>
               <Image
                 source={{uri: 'https://via.placeholder.com/40'}}

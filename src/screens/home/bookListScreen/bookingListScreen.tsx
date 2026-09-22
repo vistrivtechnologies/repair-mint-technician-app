@@ -15,7 +15,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {HomeStackProps} from '../../../@types';
 import {useNavigation} from '@react-navigation/native';
 import {UserData, UserDataContext} from '../../../context/userDataContext';
-import {Fonts, Images} from '../../../constant';
+import {Colors, Fonts} from '../../../constant';
 import {Header, TextView} from '../../../components';
 import {
   heightPercentageToDP as hp,
@@ -261,17 +261,21 @@ const BookingListScreen = () => {
 
           <View style={styles.filterRow}>
             <TouchableOpacity style={styles.filterButton}>
+              <Icon family="MaterialCommunityIcons" name="alert-outline" size={15} color={Colors.STATUS.DANGER} />
               <Text style={{fontFamily: Fonts.Medium}}>C- Critical</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.filterButton}>
-              <Text style={{color: 'blue', fontFamily: Fonts.Medium}}>
+              <Icon family="MaterialCommunityIcons" name="flag-variant-outline" size={15} color={Colors.STATUS.WARNING} />
+              <Text style={{color: Colors.STATUS.INFO, fontFamily: Fonts.Medium}}>
                 H-High
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.filterButton}>
+              <Icon family="MaterialCommunityIcons" name="arrow-down-circle-outline" size={15} color={Colors.SECONDARY[100]} />
               <Text style={{fontFamily: Fonts.Medium}}>L-Low</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.filterButton}>
+              <Icon family="MaterialCommunityIcons" name="tune-variant" size={15} color={Colors.PRIMARY[100]} />
               <Text style={{fontFamily: Fonts.Medium}}>More Filters</Text>
             </TouchableOpacity>
           </View>

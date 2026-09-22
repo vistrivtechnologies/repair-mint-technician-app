@@ -21,14 +21,14 @@ const BottomStackNavigator: FC = () => {
     isDarkMode === "dark" ? Colors.PRIMARY[ 400 ] : Colors.PRIMARY[ 300 ];
 
   const getIconColor = ( focused: boolean ) =>
-    focused ? Colors.PRIMARY[ 100 ] : Colors.FLOATINGINPUT[ 100 ];
+    focused ? Colors.SECONDARY[100] : Colors.GREY;
 
   const getLabel = ( focused: boolean, title: string ) => (
     <TextView
       style={ {
         fontSize: focused ? scale( 9 ) : scale( 8 ),
         fontFamily: Fonts.Medium,
-        color: focused ? Colors.PRIMARY[ 100 ] : Colors.FLOATINGINPUT[ 100 ],
+        color: focused ? Colors.SECONDARY[100] : Colors.GREY,
         marginBottom: 4
       } }
     >
@@ -40,9 +40,9 @@ const BottomStackNavigator: FC = () => {
     <Tab.Navigator
       screenOptions={ {
         tabBarStyle: {
-          backgroundColor: background,
-          borderTopColor: "transparent",
-          borderTopWidth: 0,
+          backgroundColor: Colors.WHITE,
+          borderTopColor: Colors.BORDERCOLOR,
+          borderTopWidth: 1,
         },
         headerShown: false,
       } }

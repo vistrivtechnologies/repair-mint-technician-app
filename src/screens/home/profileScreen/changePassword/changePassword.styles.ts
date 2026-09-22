@@ -10,7 +10,7 @@ const styles = StyleSheet.create( {
 
     container: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: Colors.PRIMARY[300],
     },
     mainContainer: {
         width: wp( 90 ),

@@ -9,7 +9,7 @@ import {scale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: Colors.PRIMARY[300],
   },
   scrollView: {
     flex: 1,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   profileImageBackground: {
     width: 110,
     height: 110,
-    backgroundColor: '#8b5cf6',
+    backgroundColor: Colors.PRIMARY[700],
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -59,11 +59,12 @@ const styles = StyleSheet.create({
   },
   editIcon: {
     fontSize: 16,
+    color: Colors.PRIMARY[100],
   },
   profileName: {
     fontSize: scale(16),
     fontFamily: Fonts.SemiBold,
-    color: 'white',
+    color: Colors.WHITE,
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   optionsContainer: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.WHITE,
     marginHorizontal: 20,
     borderRadius: 16,
     paddingVertical: 8,

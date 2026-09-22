@@ -9,7 +9,7 @@ import { moderateScale, scale } from 'react-native-size-matters';
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.PRIMARY[300],
   },
   header: {
     backgroundColor: Colors.PRIMARY[ 100 ],
@@ -26,7 +26,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   backIcon: {
-    color: 'white',
+    color: Colors.WHITE,
     fontSize: 20,
     fontWeight: '600',
   },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create( {
   },
   markAllRead: {
     fontSize: 14,
-    color: '#6c63ff',
+    color: Colors.SECONDARY[100],
     fontWeight: '500',
   },
   notificationsList: {
@@ -70,9 +70,12 @@ const styles = StyleSheet.create( {
   },
   notificationItem: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: Colors.WHITE,
     padding: 16,
     marginBottom: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
   },
   avatarContainer: {
     width: 48,

@@ -9,14 +9,14 @@ import {scale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: Colors.PRIMARY[300],
   },
   mainContainer: {
     width: wp(90),
     alignSelf: 'center',
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.WHITE,
     borderRadius: 12,
     margin: 12,
     padding: 16,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   amountCard: {
-    backgroundColor: '#f0eeff',
+    backgroundColor: Colors.PRIMARY[600],
     borderRadius: 10,
     padding: 12,
   },

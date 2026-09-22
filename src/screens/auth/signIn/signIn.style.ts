@@ -9,31 +9,31 @@ import {moderateScale, scale} from 'react-native-size-matters';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.PRIMARY[300],
     justifyContent: 'center',
   },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
-    marginTop: hp(2),
+    marginTop: hp(4),
     paddingBottom: 40,
-    paddingHorizontal: wp(4.5)
+    paddingHorizontal: wp(6),
   },
   title: {
     textAlign: 'center',
-    marginBottom: 6,
-    fontFamily: Fonts.Medium,
-    fontSize: scale(20),
+    marginBottom: 8,
+    fontFamily: Fonts.Bold,
+    fontSize: scale(28),
     color: Colors.HEADING,
   },
   subtitle: {
     textAlign: 'center',
     color: Colors.BODY,
     fontFamily: Fonts.Regular,
-    fontSize: scale(14),
+    fontSize: scale(13),
   },
   inputContainer: {
-    marginBottom: hp(2),
+    marginBottom: hp(2.2),
   },
   input: {
     flex: 1,
@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
   },
   forgotText: {
-    color: '#5F4BC7',
+    color: Colors.SECONDARY[100],
     fontWeight: '500',
-    fontFamily: Fonts.SemiBoldItalic,
+    fontFamily: Fonts.SemiBold,
   },
   loginButton: {
     backgroundColor: '#5F4BC7',
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     color: Colors.BODY,
   },
   signupLink: {
-    color: Colors.PRIMARY[100],
-    fontFamily: Fonts.SemiBoldItalic,
+    color: Colors.SECONDARY[100],
+    fontFamily: Fonts.SemiBold,
     marginLeft: wp(1),
     fontSize: scale(12),
     textDecorationLine: 'underline',
@@ -94,13 +94,13 @@ const styles = StyleSheet.create({
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: hp(10),
+    marginTop: hp(5),
     marginBottom: 20,
   },
   line: {
     flex: 1,
     height: 1,
-    backgroundColor: '#eee',
+    backgroundColor: Colors.BORDERCOLOR,
   },
   orText: {
     marginHorizontal: 10,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   iconCircle: {
-    backgroundColor: '#F6F7FB',
+    backgroundColor: Colors.PRIMARY[600],
     borderRadius: 50,
     padding: 12,
     marginHorizontal: 10,
