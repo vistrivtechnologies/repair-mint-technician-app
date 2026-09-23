@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  TouchableOpacity,
-  TextStyle,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {TouchableOpacity, View, ViewStyle} from 'react-native';
 import styles from './styles';
 import {FC} from 'react';
 import {TextView} from '../index';
@@ -63,7 +57,7 @@ const Button: FC<ButtonProps> = ({
                 family={leftIconFamily}
                 name={leftIconName}
                 size={20}
-                color={Colors.NEUTRAL[100]}
+                color={Colors.PRIMARY[100]}
               />
             </View>
           )}
@@ -78,7 +72,7 @@ const Button: FC<ButtonProps> = ({
                 family={rightIconFamily}
                 name={rightIconName}
                 size={20}
-                color={Colors.NEUTRAL[100]}
+                color={Colors.PRIMARY[100]}
               />
             </View>
           )}

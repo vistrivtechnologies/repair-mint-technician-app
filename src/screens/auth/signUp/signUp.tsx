@@ -1,6 +1,5 @@
-import React, {FC, useContext, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   Dimensions,
   Image,
   KeyboardAvoidingView,
@@ -13,7 +12,6 @@ import {
 } from 'react-native';
 import styles from './signUp.style';
 import {Button, FloatingTextInput, TextView} from '../../../components';
-import {UserData, UserDataContext} from '../../../context/userDataContext';
 import {Colors, Fonts, Images} from '../../../constant';
 import {signUpValidationSchema} from '../../../helpers/validations';
 import {useFormik} from 'formik';
@@ -51,20 +49,17 @@ const {width, height} = Dimensions.get('window');
 const SignUp: FC = () => {
   const navigation = useNavigation<SignUpScreenNavigationType>();
   const {callError} = usePopup();
-  const {isDarkMode} = useContext<UserData>(UserDataContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [otpModalVisible, setOtpModalVisible] = useState<boolean>(false);
   const GOOGLE_MAPS_API_KEY = 'AIzaSyD2IZNv1mMW3vkvFosW3EdCGgp8_9zTc30';
 
-  const background =
-    isDarkMode === 'dark' ? Colors.PRIMARY[400] : Colors.PRIMARY[300];
+  const background = Colors.PRIMARY[300];
   const [location, setLocation] = useState<{
     latitude: number;
     longitude: number;
   } | null>(null);
 
-  const textColor =
-    isDarkMode === 'dark' ? Colors.PRIMARY[300] : Colors.PRIMARY[400];
+  const textColor = Colors.PRIMARY[100];
   const {values, errors, touched, handleSubmit, handleChange, setFieldValue} =
     useFormik({
       validationSchema: signUpValidationSchema,
@@ -244,6 +239,14 @@ const SignUp: FC = () => {
               showsVerticalScrollIndicator={false}>
               <View
                 style={[styles.infoContainer, {backgroundColor: background}]}>
+                <View style={styles.brandHeader}>
+                  <Image
+                    source={require('../../../assets/logo/logo.png')}
+                    style={styles.brandLogo}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.brandLabel}>TECHNICIAN WORKSPACE</Text>
+                </View>
                 <View
                   style={
                     profileImage
@@ -312,7 +315,7 @@ const SignUp: FC = () => {
                   </TextView>
                 </View>
 
-                <View style={styles.InputMainView}>
+                <View style={[styles.InputMainView, styles.formCard]}>
                   {/* User Name Input */}
                   <View style={styles.inputContainer}>
                     <FloatingTextInput
@@ -562,7 +565,7 @@ export default SignUp;
 const mapStyles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     marginTop: moderateScale(14),
     marginBottom: moderateScale(14),
   },
@@ -603,7 +606,7 @@ const mapStyles = StyleSheet.create({
   edit: {
     textAlign: 'center',
     fontSize: 12,
-    color: '#007bff',
+    color: Colors.ACCENT,
     fontFamily: Fonts.Medium,
   },
   modalContainer: {
@@ -625,7 +628,7 @@ const mapStyles = StyleSheet.create({
   addressBox: {
     position: 'absolute',
     top: Platform.OS === 'ios' ? hp(8) : hp(5),
-    backgroundColor: 'white',
+    backgroundColor: Colors.WHITE,
     padding: 12,
     borderRadius: 8,
     alignSelf: 'center',
@@ -641,7 +644,7 @@ const mapStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 100,
     right: 20,
-    backgroundColor: 'white',
+    backgroundColor: Colors.WHITE,
     padding: 10,
     borderRadius: 30,
     elevation: 3,

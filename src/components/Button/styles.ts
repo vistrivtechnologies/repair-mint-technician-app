@@ -10,7 +10,7 @@ const styles = StyleSheet.create( {
     width: wp( 90 ),
     flexDirection: 'row',
     alignSelf: "center",
-    backgroundColor: Colors.PRIMARY[100],
+    backgroundColor: Colors.SECONDARY[100],
   },
 
 
@@ -19,7 +19,7 @@ const styles = StyleSheet.create( {
     flexDirection: "row",
   },
   buttonText: {
-    color: Colors.WHITE,
+    color: Colors.PRIMARY[100],
     fontSize: moderateScale( 14 ),
     marginLeft: hp( 1 ),
     marginRight: hp( 1 ),

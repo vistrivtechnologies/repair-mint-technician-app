@@ -10,15 +10,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.PRIMARY[300],
   },
-  profileContainer: {
+  brandHeader: {
     backgroundColor: Colors.PRIMARY[100],
+    borderBottomLeftRadius: 28,
+    borderBottomRightRadius: 28,
+    paddingTop: hp(1.5),
+    paddingBottom: hp(2),
+    alignItems: 'center',
+  },
+  brandLogo: {
+    width: 58,
+    height: 58,
+    borderRadius: 16,
+    backgroundColor: Colors.WHITE,
+  },
+  brandLabel: {
+    marginTop: hp(0.8),
+    color: Colors.WHITE,
+    fontFamily: Fonts.SemiBold,
+    fontSize: scale(13),
+    letterSpacing: 0.5,
+  },
+  profileContainer: {
+    backgroundColor: Colors.WHITE,
     borderRadius: wp(20),
     alignItems: 'center',
     alignSelf: 'center',
 
   },
   imageProfileContainer: {
-    backgroundColor: Colors.PRIMARY[700],
+    backgroundColor: Colors.SECONDARY[100],
     borderRadius: wp(50),
     alignItems: 'center',
     paddingVertical: hp(2.5),
@@ -40,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     padding: 20,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
@@ -61,13 +82,14 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     textAlign: 'center',
-    color: 'red',
+    color: Colors.STATUS.DANGER,
     marginTop: 15,
     fontSize: 16,
   },
   infoContainer: {
     marginTop: hp(2),
     backgroundColor: Colors.PRIMARY[300],
+    paddingBottom: hp(1),
   },
   inputView: {
     padding: hp(2),
@@ -78,6 +100,19 @@ const styles = StyleSheet.create({
     color: Colors.HEADING,
     fontFamily: Fonts.Bold,
     fontSize: scale(26),
+  },
+  formCard: {
+    backgroundColor: Colors.WHITE,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.BORDERCOLOR,
+    paddingTop: hp(1),
+    paddingBottom: hp(1),
+    shadowColor: Colors.PRIMARY[100],
+    shadowOpacity: 0.06,
+    shadowOffset: {width: 0, height: 4},
+    shadowRadius: 12,
+    elevation: 2,
   },
   instructionTitle: {
     textAlign: 'center',

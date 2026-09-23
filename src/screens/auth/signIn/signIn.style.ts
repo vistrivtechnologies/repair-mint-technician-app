@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.SemiBold,
   },
   loginButton: {
-    backgroundColor: '#5F4BC7',
+    backgroundColor: Colors.SECONDARY[100],
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: 'center',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   iconCircle: {
-    backgroundColor: Colors.PRIMARY[600],
+    backgroundColor: Colors.PRIMARY[700],
     borderRadius: 50,
     padding: 12,
     marginHorizontal: 10,

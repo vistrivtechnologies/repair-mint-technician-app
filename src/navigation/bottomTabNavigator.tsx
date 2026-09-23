@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import {
@@ -9,17 +9,11 @@ import {
   ProfileScreen,
 } from "../screens";
 import { Colors, Fonts, Images } from "../constant";
-import Icon from "../constant/Icon";
-import { UserData, UserDataContext } from "../context/userDataContext";
 import { TextView } from "../components";
-import { moderateScale, scale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 
 const BottomStackNavigator: FC = () => {
   const Tab = createBottomTabNavigator();
-  const { isDarkMode } = useContext<UserData>( UserDataContext );
-  const background =
-    isDarkMode === "dark" ? Colors.PRIMARY[ 400 ] : Colors.PRIMARY[ 300 ];
-
   const getIconColor = ( focused: boolean ) =>
     focused ? Colors.SECONDARY[100] : Colors.GREY;
 
@@ -43,6 +37,8 @@ const BottomStackNavigator: FC = () => {
           backgroundColor: Colors.WHITE,
           borderTopColor: Colors.BORDERCOLOR,
           borderTopWidth: 1,
+          height: 70,
+          paddingTop: 6,
         },
         headerShown: false,
       } }

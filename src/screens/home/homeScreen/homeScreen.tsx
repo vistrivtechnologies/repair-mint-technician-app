@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
+import React, {useContext, useLayoutEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -33,28 +33,28 @@ const statData = [
     id: '1',
     title: 'Critical Worklist',
     count: 3,
-    color: '#f3b35a',
+    color: Colors.STATUS.WARNING,
     icon: 'alert-circle-outline',
   },
   {
     id: '2',
     title: 'In progress Worklist',
     count: 7,
-    color: '#69b7a0',
+    color: Colors.ACCENT,
     icon: 'progress-clock',
   },
   {
     id: '3',
     title: 'Overdue Worklist',
     count: 5,
-    color: '#75b8d0',
+    color: Colors.STATUS.INFO,
     icon: 'calendar-clock-outline',
   },
   {
     id: '4',
     title: 'My Plan',
     count: 4,
-    color: '#82d7b0',
+    color: Colors.SECONDARY[100],
     icon: 'clipboard-check-outline',
   },
 ];
@@ -68,7 +68,6 @@ const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeScreenScreenNavigationType>();
   const {userData} = useContext<UserData>(UserDataContext);
   const {assignedSR, setAssignedSR} = useContext<AssignedSR>(AssignedSRContext);
-  const [assignedSRList, setAssignedSRList] = useState<any>([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const todayAssignedCount = assignedSR.filter(item =>
@@ -117,7 +116,6 @@ const HomeScreen: React.FC = () => {
       .then(res => {
         if (res) {
           setAssignedSR(res?.data?.assignedServiceRequests);
-          setAssignedSRList(res?.data?.assignedServiceRequests?.slice(0, 3));
         }
       })
       .catch(err => {
@@ -166,7 +164,7 @@ const HomeScreen: React.FC = () => {
             styles.tag,
               {
                 backgroundColor:
-                  index % 2 === 0 ? Colors.SECONDARY[100] : '#69b7a0',
+                  index % 2 === 0 ? Colors.SECONDARY[100] : Colors.ACCENT,
               },
           ]}>
           <Text style={styles.tagText}>
@@ -194,20 +192,21 @@ const HomeScreen: React.FC = () => {
   const RecentCard = ({item}: {item: any}) => {
     const statusColors: {[key: string]: string} = {
       'IN PROGRESS': Colors.SECONDARY[100],
-      'ON HOLD': '#c17b1b',
-      completed: '#21845f',
-      CRITICAL: '#c44949',
+      'ON HOLD': Colors.STATUS.WARNING,
+      completed: Colors.STATUS.SUCCESS,
+      CRITICAL: Colors.STATUS.DANGER,
     };
 
     const statusBackgroundColors: {[key: string]: string} = {
       'IN PROGRESS': Colors.PRIMARY[600],
-      'ON HOLD': '#fff1d5',
-      completed: '#d9f2e5',
-      CRITICAL: '#f8dddd',
+      'ON HOLD': Colors.STATUS.WARNING_SOFT,
+      completed: Colors.STATUS.SUCCESS_SOFT,
+      CRITICAL: Colors.STATUS.DANGER_SOFT,
     };
 
     const statusColor =
-      statusColors[item?.workCompletionStatus?.toUpperCase()] || '#21845f';
+      statusColors[item?.workCompletionStatus?.toUpperCase()] ||
+      Colors.STATUS.SUCCESS;
     const statusbgColour =
       statusBackgroundColors[item?.workCompletionStatus?.toUpperCase()] ||
       Colors.PRIMARY[600];
@@ -229,7 +228,7 @@ const HomeScreen: React.FC = () => {
             </TextView>
           </View>
 
-          <View style={[styles.tag, {backgroundColor: '#69b7a0'}]}>
+          <View style={[styles.tag, {backgroundColor: Colors.ACCENT}]}>
             <TextView style={styles.tagText}>
               {item?.serviceRequest?.problemDescription?.slice(0, 2)}
             </TextView>
