@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Modal,
 } from 'react-native';
 import Icon from '../../../constant/Icon';
 import styles from './bookingListScreen.styles';
@@ -45,6 +46,31 @@ const BookingListScreen = () => {
   const {isDarkMode} = useContext<UserData>(UserDataContext);
   const {assignedSR} = useContext<AssignedSR>(AssignedSRContext);
   const [timers, setTimers] = useState<{[key: string]: TimerData}>({});
+  const [selectedWorkFilter, setSelectedWorkFilter] = useState('All');
+  const [moreFiltersVisible, setMoreFiltersVisible] = useState(false);
+
+  const getWorkFilter = (item: any) => {
+    if (item?.workCompletionTime) return 'Completed';
+    if (item?.workStartTime) return 'In Progress';
+    return 'To Do';
+  };
+
+  const workCounts = useMemo(
+    () => ({
+      toDo: assignedSR.filter(item => getWorkFilter(item) === 'To Do').length,
+      inProgress: assignedSR.filter(item => getWorkFilter(item) === 'In Progress').length,
+      completed: assignedSR.filter(item => getWorkFilter(item) === 'Completed').length,
+    }),
+    [assignedSR],
+  );
+
+  const filteredAssignedSR = useMemo(
+    () =>
+      selectedWorkFilter === 'All'
+        ? assignedSR
+        : assignedSR.filter(item => getWorkFilter(item) === selectedWorkFilter),
+    [assignedSR, selectedWorkFilter],
+  );
 
   const getDurationFromNow = (timestamp: string | Date) => {
     const now = moment();
@@ -259,24 +285,53 @@ const BookingListScreen = () => {
         <View style={styles.infoContainer}>
           <TextInput style={styles.searchInput} placeholder="Search" />
 
-          <View style={styles.filterRow}>
-            <TouchableOpacity style={styles.filterButton}>
-              <Icon family="MaterialCommunityIcons" name="alert-outline" size={15} color={Colors.STATUS.DANGER} />
-              <Text style={{fontFamily: Fonts.Medium}}>C- Critical</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Icon family="MaterialCommunityIcons" name="flag-variant-outline" size={15} color={Colors.STATUS.WARNING} />
-              <Text style={{color: Colors.STATUS.INFO, fontFamily: Fonts.Medium}}>
-                H-High
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Icon family="MaterialCommunityIcons" name="arrow-down-circle-outline" size={15} color={Colors.SECONDARY[100]} />
-              <Text style={{fontFamily: Fonts.Medium}}>L-Low</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Icon family="MaterialCommunityIcons" name="tune-variant" size={15} color={Colors.PRIMARY[100]} />
-              <Text style={{fontFamily: Fonts.Medium}}>More Filters</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.statusFilterRow}>
+            {['All', 'To Do', 'In Progress', 'Completed'].map(filter => (
+              <TouchableOpacity
+                key={filter}
+                style={[
+                  styles.statusFilter,
+                  selectedWorkFilter === filter && styles.statusFilterActive,
+                ]}
+                onPress={() => setSelectedWorkFilter(filter)}>
+                <Text
+                  style={[
+                    styles.statusFilterText,
+                    selectedWorkFilter === filter && styles.statusFilterTextActive,
+                  ]}>
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+          <View style={styles.summaryRow}>
+            <View style={[styles.summaryCard, styles.toDoSummary]}>
+              <Text style={styles.summaryLabel}>To Do</Text>
+              <Text style={styles.summaryNumber}>{workCounts.toDo}</Text>
+            </View>
+            <View style={[styles.summaryCard, styles.inProgressSummary]}>
+              <Text style={styles.summaryLabel}>In Progress</Text>
+              <Text style={styles.summaryNumber}>{workCounts.inProgress}</Text>
+            </View>
+            <View style={[styles.summaryCard, styles.completedSummary]}>
+              <Text style={styles.summaryLabel}>Completed</Text>
+              <Text style={styles.summaryNumber}>{workCounts.completed}</Text>
+            </View>
+          </View>
+          <View style={styles.moreFiltersRow}>
+            <TouchableOpacity
+              style={styles.moreFiltersButton}
+              onPress={() => setMoreFiltersVisible(true)}>
+              <Icon
+                family="MaterialCommunityIcons"
+                name="tune-variant"
+                size={15}
+                color={Colors.PRIMARY[100]}
+              />
+              <Text style={styles.moreFiltersText}>More Filters</Text>
             </TouchableOpacity>
           </View>
           <View
@@ -286,7 +341,7 @@ const BookingListScreen = () => {
               paddingVertical: hp(1),
             }}>
             <Text style={styles.countText}>
-              Showing {assignedSR?.length ?? 0} workorders
+              Showing {filteredAssignedSR?.length ?? 0} workorders
             </Text>
             <Image
               source={Images.ic_up_down}
@@ -299,13 +354,56 @@ const BookingListScreen = () => {
             />
           </View>
           <FlatList
-            data={assignedSR}
+            data={filteredAssignedSR}
             keyExtractor={item => item._id}
             renderItem={renderBookingList}
             scrollEnabled={false}
           />
         </View>
       </ScrollView>
+      <Modal
+        visible={moreFiltersVisible}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setMoreFiltersVisible(false)}>
+        <View style={styles.moreFiltersOverlay}>
+          <View style={styles.moreFiltersModal}>
+            <View style={styles.moreFiltersModalHeader}>
+              <Text style={styles.moreFiltersTitle}>More Filters</Text>
+              <TouchableOpacity onPress={() => setMoreFiltersVisible(false)}>
+                <Icon family="Ionicons" name="close" size={22} color={Colors.HEADING} />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity style={styles.criticalFilterOption}>
+              <Icon
+                family="MaterialCommunityIcons"
+                name="alert-outline"
+                size={18}
+                color={Colors.WHITE}
+              />
+              <Text style={styles.criticalFilterText}>C- Critical</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.highFilterOption}>
+              <Icon
+                family="MaterialCommunityIcons"
+                name="flag-variant-outline"
+                size={18}
+                color={Colors.WHITE}
+              />
+              <Text style={styles.highFilterText}>H- High</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.lowFilterOption}>
+              <Icon
+                family="MaterialCommunityIcons"
+                name="arrow-down-circle-outline"
+                size={18}
+                color={Colors.WHITE}
+              />
+              <Text style={styles.lowFilterText}>L- Low</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };

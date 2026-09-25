@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   Image,
+  ImageBackground,
   TouchableOpacity,
   Modal,
 } from 'react-native';
@@ -22,6 +23,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 interface ProfileOption {
   id: string;
   title: string;
+  subtitle: string;
   icon?: any;
   ionicons?: any;
   onPress: () => void;
@@ -46,30 +48,35 @@ const ProfileScreen: React.FC = () => {
     {
       id: '1',
       title: 'App Language',
+      subtitle: 'English (US)',
       icon: Images.ic_Language,
       onPress: () => console.log('App Language pressed'),
     },
     {
       id: '2',
       title: 'App Theme',
+      subtitle: 'Light mode',
       icon: Images.ic_Theme,
       onPress: () => console.log('App Theme pressed'),
     },
     {
       id: '3',
       title: 'Change Password',
+      subtitle: 'Update your password',
       icon: Images.ic_ChangePassword,
       onPress: () => navigation.navigate('ChangePassword'),
     },
     {
       id: '4',
       title: 'Earning List',
+      subtitle: 'View payment history',
       icon: Images.ic_EarningList,
       onPress: () => navigation.navigate('EarningList'),
     },
     {
       id: '5',
       title: 'Configure Slots',
+      subtitle: 'Manage your availability',
       ionicons: (
         <Ionicons
           name="timer-outline"
@@ -97,7 +104,13 @@ const ProfileScreen: React.FC = () => {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: heightPercentageToDP(2) }}>
         {/* Profile Header Section */}
-        <View style={styles.profileHeader}>
+        <ImageBackground
+          source={{
+            uri: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
+          }}
+          style={styles.profileHeader}
+          imageStyle={styles.profileHeaderImage}>
+          <View pointerEvents="none" style={styles.profileHeaderOverlay} />
           <View style={styles.profileImageContainer}>
             <View style={styles.profileImageBackground}>
               <Image
@@ -116,7 +129,7 @@ const ProfileScreen: React.FC = () => {
 
           <Text style={styles.profileName}>Ashutosh Pandey</Text>
           <Text style={styles.profileEmail}>ashutosh@amitcorpo.com</Text>
-        </View>
+        </ImageBackground>
 
         {/* Stats Section */}
         <View style={styles.statsContainer}>
@@ -133,9 +146,18 @@ const ProfileScreen: React.FC = () => {
             <Text style={styles.statLabel}>Years of</Text>
             <Text style={styles.statLabel}>Experience</Text>
           </View>
+
+          <View style={styles.statDivider} />
+
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>4.9</Text>
+            <Text style={styles.statLabel}>Customer</Text>
+            <Text style={styles.statLabel}>Rating</Text>
+          </View>
         </View>
 
         {/* Options Section */}
+        <Text style={styles.sectionTitle}>My Services</Text>
         <View style={styles.optionsContainer}>
           {profileOptions.map(option => (
             <TouchableOpacity
@@ -149,8 +171,17 @@ const ProfileScreen: React.FC = () => {
                   :
                   <Text>{option.ionicons}</Text>
                 }
-                <Text style={styles.optionTitle}>{option.title}</Text>
+                <View style={styles.optionTextContainer}>
+                  <Text style={styles.optionTitle}>{option.title}</Text>
+                  <Text style={styles.optionSubtitle}>{option.subtitle}</Text>
+                </View>
               </View>
+              <Ionicons
+                name="chevron-forward"
+                size={20}
+                color={Colors.BODY}
+                style={styles.optionChevron}
+              />
             </TouchableOpacity>
           ))}
         </View>

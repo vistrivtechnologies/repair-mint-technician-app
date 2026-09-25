@@ -9,7 +9,7 @@ import { scale } from 'react-native-size-matters';
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: Colors.PRIMARY[ 300 ],
+    backgroundColor: '#FAFCFB',
   },
   infoContainer: {
     width: wp( 90 ),
@@ -49,6 +49,146 @@ const styles = StyleSheet.create( {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
+  },
+  moreFiltersRow: {
+    alignItems: 'flex-end',
+    marginBottom: 2,
+  },
+  moreFiltersButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingVertical: 6,
+    paddingHorizontal: 4,
+  },
+  moreFiltersText: {
+    color: Colors.PRIMARY[100],
+    fontFamily: Fonts.SemiBold,
+    fontSize: scale(11),
+  },
+  statusFilterRow: {
+    gap: 8,
+    paddingVertical: 4,
+    marginBottom: 10,
+  },
+  statusFilter: {
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 16,
+    backgroundColor: '#F3F6F5',
+  },
+  statusFilterActive: {
+    backgroundColor: Colors.PRIMARY[100],
+  },
+  statusFilterText: {
+    color: Colors.BODY,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(11),
+  },
+  statusFilterTextActive: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.SemiBold,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 12,
+  },
+  summaryCard: {
+    flex: 1,
+    minHeight: 64,
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#EAF0EC',
+  },
+  toDoSummary: {
+    backgroundColor: '#6B5BD2',
+  },
+  inProgressSummary: {
+    backgroundColor: Colors.STATUS.WARNING,
+  },
+  completedSummary: {
+    backgroundColor: Colors.SECONDARY[100],
+  },
+  summaryLabel: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(10),
+    marginBottom: 3,
+  },
+  summaryNumber: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.Bold,
+    fontSize: scale(18),
+  },
+  moreFiltersOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(17, 35, 45, 0.35)',
+  },
+  moreFiltersModal: {
+    backgroundColor: Colors.WHITE,
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    padding: 20,
+    paddingBottom: 30,
+  },
+  moreFiltersModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 18,
+  },
+  moreFiltersTitle: {
+    color: Colors.HEADING,
+    fontFamily: Fonts.SemiBold,
+    fontSize: scale(17),
+  },
+  criticalFilterOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: Colors.STATUS.DANGER,
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+  criticalFilterText: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(13),
+  },
+  highFilterOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: Colors.STATUS.WARNING,
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    marginTop: 8,
+  },
+  highFilterText: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(13),
+  },
+  lowFilterOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: Colors.SECONDARY[100],
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    marginTop: 8,
+  },
+  lowFilterText: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(13),
   },
   countText: {
     marginBottom: 10,
