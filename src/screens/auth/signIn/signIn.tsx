@@ -54,7 +54,7 @@ const SignIn = () => {
       initialValues: {
         email: '',
         phoneNumber: '',
-        countryCode: '',
+        countryCode: '+91',
       },
       onSubmit: async (data: {
         email: string;
@@ -124,6 +124,7 @@ const SignIn = () => {
     if (RememberMe) {
       setFieldValue('email', username);
       setFieldValue('phoneNumber', phoneNumber);
+      setFieldValue('countryCode', '+91');
       setRememberMe(true);
     }
   };
