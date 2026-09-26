@@ -54,7 +54,7 @@ const SignIn = () => {
       initialValues: {
         email: '',
         phoneNumber: '',
-        countryCode: '+91',
+        countryCode: '',
       },
       onSubmit: async (data: {
         email: string;
