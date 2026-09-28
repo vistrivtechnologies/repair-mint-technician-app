@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {Colors, Fonts} from '../../constant';
+import {Colors} from '../../constant';
 import styles from './styles';
 
 const logo = require('../../assets/logo/logo.png');
@@ -43,7 +43,10 @@ const SplashScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={Colors.PRIMARY[300]} />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.PRIMARY[100]} />
+      <View style={styles.backgroundGlow} />
+      <View style={styles.backgroundGlowSecondary} />
+      <Text style={styles.topLabel}>REPAIR OPERATIONS</Text>
       <Animated.View
         style={[styles.brandLockup, {opacity, transform: [{scale}]}]}>
         <View style={styles.logoFrame}>
@@ -53,9 +56,24 @@ const SplashScreen: React.FC = () => {
           Repair<Text style={styles.brandAccent}>Mint</Text>
         </Text>
         <Text style={styles.tagline}>FIELD SERVICE, SIMPLIFIED</Text>
-        <Animated.View style={[styles.progressTrack, {width: lineWidth.interpolate({inputRange: [0, 1], outputRange: [0, 92]})}]} />
+        <View style={styles.progressRail}>
+          <Animated.View
+            style={[
+              styles.progressTrack,
+              {
+                width: lineWidth.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 92],
+                }),
+              },
+            ]}
+          />
+        </View>
       </Animated.View>
-      <Text style={styles.footer}>TECHNICIAN WORKSPACE</Text>
+      <View style={styles.footer}>
+        <View style={styles.footerDot} />
+        <Text style={styles.footerText}>TECHNICIAN WORKSPACE</Text>
+      </View>
     </View>
   );
 };
