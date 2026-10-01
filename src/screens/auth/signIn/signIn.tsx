@@ -124,6 +124,7 @@ const SignIn = () => {
     if (RememberMe) {
       setFieldValue('email', username);
       setFieldValue('phoneNumber', phoneNumber);
+      setFieldValue('countryCode', '+91');
       setRememberMe(true);
     }
   };

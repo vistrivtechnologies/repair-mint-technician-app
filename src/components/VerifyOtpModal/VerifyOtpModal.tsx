@@ -91,15 +91,17 @@ const VerifyOTPModal: React.FC<VerifyOTPModalProps> = ({
         longitude: region?.longitude,
       };
       const loginPayload = {
-        ...(data?.email
-          ? {email: data?.email}
+        ...(contactInfo?.type === 'email'
+          ? {
+              email: contactInfo.value,
+            }
           : {
-              countryCode: data?.countryCode,
-              phoneNumber: data?.phoneNumber,
+              countryCode: contactInfo.countryCode || '+91',
+              phoneNumber: contactInfo.value,
             }),
-        verificationMethod: data?.email ? 'email' : 'otp',
+        verificationMethod: contactInfo?.type === 'email' ? 'email' : 'otp',
         isLoginFor: 'technician-app',
-        deviceId: 's89auja98suda98sud--as90ajs',
+        deviceId: contactInfo.deviceId,
         secretCodeClient: data?.otp,
       };
       if (isAuthFor === 'register') {
