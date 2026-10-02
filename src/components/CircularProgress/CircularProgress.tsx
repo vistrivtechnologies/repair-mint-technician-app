@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { Fonts } from '../../constant';
+import { Colors, Fonts } from '../../constant';
 import { scale } from 'react-native-size-matters';
 
 interface Props {
@@ -16,8 +16,8 @@ const CircularProgressCard: React.FC<Props> = ({ percentage }) => {
           size={60}
           width={6}
           fill={percentage}
-          tintColor="#ffffff"
-          backgroundColor="#6e6893"
+          tintColor={Colors.SECONDARY[100]}
+          backgroundColor={Colors.PRIMARY[500]}
           rotation={0}
           lineCap="round"
         >
@@ -28,7 +28,7 @@ const CircularProgressCard: React.FC<Props> = ({ percentage }) => {
 
 const styles = StyleSheet.create({
   percentText: {
-    color: '#fff',
+    color: Colors.WHITE,
     fontFamily:Fonts.SemiBold,
     fontSize: scale(11),
   },

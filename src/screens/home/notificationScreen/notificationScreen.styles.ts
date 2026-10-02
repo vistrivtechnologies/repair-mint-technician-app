@@ -9,7 +9,7 @@ import { moderateScale, scale } from 'react-native-size-matters';
 const styles = StyleSheet.create( {
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#FAFCFB',
   },
   header: {
     backgroundColor: Colors.PRIMARY[ 100 ],
@@ -26,7 +26,7 @@ const styles = StyleSheet.create( {
     alignItems: 'center',
   },
   backIcon: {
-    color: 'white',
+    color: Colors.WHITE,
     fontSize: 20,
     fontWeight: '600',
   },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create( {
     flex: 1,
   },
   section: {
-    marginTop: 20,
+    marginTop: 16,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create( {
   },
   markAllRead: {
     fontSize: 14,
-    color: '#6c63ff',
+    color: Colors.SECONDARY[100],
     fontWeight: '500',
   },
   notificationsList: {
@@ -70,21 +70,60 @@ const styles = StyleSheet.create( {
   },
   notificationItem: {
     flexDirection: 'row',
-    backgroundColor: 'white',
-    padding: 16,
-    marginBottom: 12,
+    backgroundColor: Colors.WHITE,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    marginBottom: 2,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8EFED',
   },
   avatarContainer: {
     width: 48,
     height: 48,
-    backgroundColor: Colors.PRIMARY[ 300 ],
-    borderRadius: 14,
+    backgroundColor: Colors.PRIMARY[100],
+    borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
   },
   avatar: {
     fontSize: 24,
+  },
+  bookingIcon: {
+    backgroundColor: Colors.PRIMARY[100],
+  },
+  paymentIcon: {
+    backgroundColor: Colors.STATUS.WARNING,
+  },
+  reminderIcon: {
+    backgroundColor: Colors.SECONDARY[100],
+  },
+  filterRow: {
+    gap: 8,
+    paddingHorizontal: 20,
+    paddingVertical: 4,
+    marginBottom: 4,
+  },
+  filterChip: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
+    backgroundColor: Colors.WHITE,
+    borderWidth: 1,
+    borderColor: '#E1EAE6',
+  },
+  filterChipActive: {
+    backgroundColor: Colors.PRIMARY[100],
+    borderColor: Colors.PRIMARY[100],
+  },
+  filterText: {
+    color: Colors.HEADING,
+    fontFamily: Fonts.Medium,
+    fontSize: scale(11),
+  },
+  filterTextActive: {
+    color: Colors.WHITE,
+    fontFamily: Fonts.SemiBold,
   },
   notificationContent: {
     flex: 1,

@@ -1,16 +1,18 @@
+import {Colors} from '../constant';
+
 export const statusTheme = (status: string) => {
     const STATUS_STYLES: Record<
       string,
       { backgroundColor: string; color: string }
     > = {
-      pending: { backgroundColor: '#FFE5B4', color: '#8A4B00' },
-      arrived: { backgroundColor: '#D1F2EB', color: '#117864' },
-      'before-work': { backgroundColor: '#F9E79F', color: '#7D6608' },
-      'work-started': { backgroundColor: '#AED6F1', color: '#154360' },
-      'after-work': { backgroundColor: '#F5CBA7', color: '#6E2C00' },
-      completed: { backgroundColor: '#D4EFDF', color: '#1D8348' },
+      pending: { backgroundColor: Colors.STATUS.WARNING_SOFT, color: Colors.STATUS.WARNING },
+      arrived: { backgroundColor: Colors.PRIMARY[600], color: Colors.SECONDARY[100] },
+      'before-work': { backgroundColor: Colors.STATUS.WARNING_SOFT, color: Colors.STATUS.WARNING },
+      'work-started': { backgroundColor: Colors.STATUS.INFO_SOFT, color: Colors.STATUS.INFO },
+      'after-work': { backgroundColor: Colors.STATUS.WARNING_SOFT, color: Colors.STATUS.WARNING },
+      completed: { backgroundColor: Colors.STATUS.SUCCESS_SOFT, color: Colors.STATUS.SUCCESS },
     };
   
-    return STATUS_STYLES[status] || { backgroundColor: '#E0E0E0', color: '#000' };
+    return STATUS_STYLES[status] || { backgroundColor: Colors.LIGHT_GREY_3, color: Colors.BODY };
   };
   
