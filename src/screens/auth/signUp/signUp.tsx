@@ -859,6 +859,9 @@ const SignUp: FC = () => {
     },
 
     onSubmit: async data => {
+      console.log('🔥 FORM SUBMIT CALLED');
+      console.log('🔥 SUBMIT DATA:', data);
+
       setIsLoading(true);
 
       const payload = {
@@ -867,14 +870,20 @@ const SignUp: FC = () => {
         isAuthServiceFor: 'register',
       };
 
+      console.log('🔥 SEND OTP PAYLOAD:', payload);
+
       API.sendOtp(payload)
         .then(res => {
+          console.log('🔥 SEND OTP RESPONSE:', res);
+
           if (res) {
             setOtpModalVisible(true);
             setIsLoading(false);
           }
         })
         .catch(err => {
+          console.log('🔥 SEND OTP ERROR:', err);
+
           setIsLoading(false);
 
           callError({
@@ -1690,12 +1699,16 @@ const SignUp: FC = () => {
 
                 <Button
                   title="SIGN UP"
-                  onPress={
-                    handleSubmit
-                  }
-                  style={
-                    styles.signUpButton
-                  }
+                  onPress={() => {
+                    console.log('==============================');
+                    console.log('SIGN UP BUTTON PRESSED');
+                    console.log('VALUES:', values);
+                    console.log('ERRORS:', errors);
+                    console.log('==============================');
+
+                    handleSubmit();
+                  }}
+                  style={styles.signUpButton}
                 />
 
                 <TouchableOpacity
@@ -1746,18 +1759,14 @@ const SignUp: FC = () => {
         onResendOTP={() => {}}
         contactInfo={{
           type: 'phone',
-          value:
-            values?.phoneNumber,
-          email:
-            values?.email,
-          userName:
-            values?.userName,
-          address:
-            values?.address,
-          countryCode:
-            values?.countryCode,
-          deviceId:
-            's89auja98suda98sud--as90ajs',
+          value: values?.phoneNumber,
+          email: values?.email,
+          userName: values?.userName,
+          address: values?.address,
+          companyCode: values?.companyCode,
+          employeeID: values?.employeeID,
+          countryCode: values?.countryCode,
+          deviceId: 's89auja98suda98sud--as90ajs',
           region,
         }}
         isAuthFor="register"

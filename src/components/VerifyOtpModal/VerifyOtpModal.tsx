@@ -24,6 +24,8 @@ interface VerifyOTPModalProps {
     userName?: string;
     email?: string;
     address?: string;
+    companyCode?: string;
+    employeeID?: string;
     deviceId: any;
     region?: any;
   };
@@ -38,6 +40,8 @@ interface ISigninParams {
   email: string;
   userName: string;
   address: string;
+  companyCode: string;
+  employeeID: string;
   otp: string;
   deviceId: string;
   verificationMethod: string;
@@ -69,6 +73,8 @@ const VerifyOTPModal: React.FC<VerifyOTPModalProps> = ({
       email: '',
       userName: '',
       address: '',
+      companyCode: '',
+      employeeID: '',
       phoneNumber: '',
       countryCode: '',
       deviceId: '',
@@ -87,6 +93,8 @@ const VerifyOTPModal: React.FC<VerifyOTPModalProps> = ({
         role: 'technician',
         userName: data?.userName,
         addressInput: data?.address,
+        companyCode: data?.companyCode,
+        employeeID: data?.employeeID,
         latitude: region?.latitude,
         longitude: region?.longitude,
       };
@@ -200,6 +208,8 @@ const VerifyOTPModal: React.FC<VerifyOTPModalProps> = ({
         setFieldValue('email', contactInfo.email);
         setFieldValue('userName', contactInfo.userName);
         setFieldValue('address', contactInfo.address);
+        setFieldValue('companyCode', contactInfo.companyCode);
+        setFieldValue('employeeID', contactInfo.employeeID);
         setFieldValue('verificationMethod', 'otp');
       } else {
         setFieldValue('phoneNumber', contactInfo.value);
