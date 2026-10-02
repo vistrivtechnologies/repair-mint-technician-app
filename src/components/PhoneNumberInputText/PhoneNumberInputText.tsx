@@ -70,7 +70,13 @@ const CustomPhoneNumberInput: React.FC<CustomPhoneNumberInputFieldProps> = ({
       callingCode: ['91'],
       name: 'India',
     };
-    setCountry(defaultCountry as Country);
+
+    const defaultCountryData = defaultCountry as Country;
+
+    setCountry(defaultCountryData);
+    setCountryCode('IN');
+    onSelectCountry(defaultCountryData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSelect = (selectedCountry: Country) => {

@@ -40,63 +40,91 @@ import {getBase64FromUri} from '../../../utils/base64String';
 import {TermsToggle} from '../../../components/toggleButton/toggleButton';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 type SignUpScreenNavigationType = NativeStackNavigationProp<
   AuthStackProps,
   'SignUp'
 >;
+
 const screen = Dimensions.get('screen');
 const {width, height} = Dimensions.get('window');
+
 const SignUp: FC = () => {
   const navigation = useNavigation<SignUpScreenNavigationType>();
   const {callError} = usePopup();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [otpModalVisible, setOtpModalVisible] = useState<boolean>(false);
-  const GOOGLE_MAPS_API_KEY = 'AIzaSyD2IZNv1mMW3vkvFosW3EdCGgp8_9zTc30';
+
+  const GOOGLE_MAPS_API_KEY =
+    'AIzaSyD2IZNv1mMW3vkvFosW3EdCGgp8_9zTc30';
 
   const background = Colors.PRIMARY[300];
+
   const [location, setLocation] = useState<{
     latitude: number;
     longitude: number;
   } | null>(null);
 
   const textColor = Colors.PRIMARY[100];
-  const {values, errors, touched, handleSubmit, handleChange, setFieldValue} =
-    useFormik({
-      validationSchema: signUpValidationSchema,
-      initialValues: {
-        userName: '',
-        countryCode: '',
-        phoneNumber: '',
-        email: '',
-        companyCode: '',
-        address: '',
-        employeeID: '',
-        jobRole: '',
-        emiratesId: '',
-      },
-      onSubmit: async data => {
-        setIsLoading(true);
-        const payload = {
-          countryCode: data?.countryCode,
-          phoneNumber: data?.phoneNumber,
-          isAuthServiceFor: 'register',
-        };
-        API.sendOtp(payload)
-          .then(res => {
-            if (res) {
-              setOtpModalVisible(true);
-              setIsLoading(false);
-            }
-          })
-          .catch(err => {
+
+  const {
+    values,
+    errors,
+    touched,
+    handleSubmit,
+    handleChange,
+    setFieldValue,
+  } = useFormik({
+    validationSchema: signUpValidationSchema,
+
+    initialValues: {
+      userName: '',
+      countryCode: '',
+      phoneNumber: '',
+      email: '',
+      companyCode: '',
+      address: '',
+      employeeID: '',
+      jobRole: '',
+      emiratesId: '',
+    },
+
+    onSubmit: async data => {
+      console.log('🔥 FORM SUBMIT CALLED');
+      console.log('🔥 SUBMIT DATA:', data);
+
+      setIsLoading(true);
+
+      const payload = {
+        countryCode: data?.countryCode,
+        phoneNumber: data?.phoneNumber,
+        isAuthServiceFor: 'register',
+      };
+
+      console.log('🔥 SEND OTP PAYLOAD:', payload);
+
+      API.sendOtp(payload)
+        .then(res => {
+          console.log('🔥 SEND OTP RESPONSE:', res);
+
+          if (res) {
+            setOtpModalVisible(true);
             setIsLoading(false);
-            callError({
-              message: err?.error?.message,
-              isDelayModal: true,
-            });
+          }
+        })
+        .catch(err => {
+          console.log('🔥 SEND OTP ERROR:', err);
+
+          setIsLoading(false);
+
+          callError({
+            message: err?.error?.message,
+            isDelayModal: true,
           });
-      },
-    });
+        });
+    },
+  });
 
   const [modalVisible, setModalVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
@@ -110,13 +138,13 @@ const SignUp: FC = () => {
   const [files, setFiles] = useState<any[]>([]);
   const [documentError, setDocumentError] = useState<boolean>(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
 
   const handleSelectCamera = () => {
     launchCamera({mediaType: 'photo'}, response => {
       if (response?.assets?.[0]) {
-        setProfileImage(response.assets[0].uri);
+        setProfileImage(response.assets[0].uri ?? null);
         setProfileModalVisible(false);
       }
     });
@@ -125,14 +153,15 @@ const SignUp: FC = () => {
   const handleSelectGallery = () => {
     launchImageLibrary({mediaType: 'photo'}, response => {
       if (response?.assets?.[0]) {
-        setProfileImage(response.assets[0].uri);
+        setProfileImage(response.assets[0].uri ?? null);
         setProfileModalVisible(false);
       }
     });
   };
+
   const onRegionChange = (newRegion: Region) => {
-    setRegion(newRegion); // 👈 THIS is required to let the map move
-    setSelectedRegion(newRegion); // For confirmation
+    setRegion(newRegion);
+    setSelectedRegion(newRegion);
     fetchAddress(newRegion.latitude, newRegion.longitude);
   };
 
@@ -141,13 +170,16 @@ const SignUp: FC = () => {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       );
+
       return granted === PermissionsAndroid.RESULTS.GRANTED;
     }
+
     return true;
   };
 
   const getCurrentLocation = async () => {
     const granted = await requestLocationPermission();
+
     if (!granted) {
       const dubaiRegion: Region = {
         latitude: 25.276987,
@@ -155,6 +187,7 @@ const SignUp: FC = () => {
         latitudeDelta: 0.05,
         longitudeDelta: 0.05,
       };
+
       setRegion(dubaiRegion);
       return;
     }
@@ -167,6 +200,7 @@ const SignUp: FC = () => {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         };
+
         setRegion(coords);
         fetchAddress(coords.latitude, coords.longitude);
         mapRef.current?.animateToRegion(coords);
@@ -174,7 +208,11 @@ const SignUp: FC = () => {
       error => {
         console.warn(error.message);
       },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 10000,
+      },
     );
   };
 
@@ -183,8 +221,12 @@ const SignUp: FC = () => {
       const res = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`,
       );
+
       const result = res.data.results[0];
-      if (result) setAddress(result.formatted_address);
+
+      if (result) {
+        setAddress(result.formatted_address);
+      }
     } catch (e) {
       console.warn('Address fetch error', e);
     }
@@ -196,16 +238,19 @@ const SignUp: FC = () => {
 
   const confirmLocation = () => {
     if (selectedRegion) {
-      setConfirmedRegion(selectedRegion); // Store new region
-      setConfirmedAddress(address); // Use address fetched from that region
+      setConfirmedRegion(selectedRegion);
+      setConfirmedAddress(address);
     }
+
     setModalVisible(false);
   };
 
   const handleFilesPicked = async (selectedFiles: any[]) => {
     const updatedFiles = [...files, ...selectedFiles];
+
     setFiles(updatedFiles);
     setDocumentError(false);
+
     const base64files = await Promise.all(
       updatedFiles.map(async (data, index) => {
         const base64 = data?.isEditFile
@@ -220,8 +265,10 @@ const SignUp: FC = () => {
         };
       }),
     );
+
     setBase64Files(base64files);
   };
+
   console.log('region: ', region);
 
   return (
@@ -229,7 +276,8 @@ const SignUp: FC = () => {
       behavior={Platform.OS === 'ios' ? 'height' : undefined}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
       style={{flex: 1}}>
-      <SafeAreaView style={[styles.container, {backgroundColor: background}]}>
+      <SafeAreaView
+        style={[styles.container, {backgroundColor: background}]}>
         <View style={{flex: 1}}>
           <View style={{height: hp(77)}}>
             <ScrollView
@@ -238,15 +286,22 @@ const SignUp: FC = () => {
               keyboardShouldPersistTaps="handled"
               showsVerticalScrollIndicator={false}>
               <View
-                style={[styles.infoContainer, {backgroundColor: background}]}>
+                style={[
+                  styles.infoContainer,
+                  {backgroundColor: background},
+                ]}>
                 <View style={styles.brandHeader}>
                   <Image
                     source={require('../../../assets/logo/logo.png')}
                     style={styles.brandLogo}
                     resizeMode="contain"
                   />
-                  <Text style={styles.brandLabel}>TECHNICIAN WORKSPACE</Text>
+
+                  <Text style={styles.brandLabel}>
+                    TECHNICIAN WORKSPACE
+                  </Text>
                 </View>
+
                 <View
                   style={
                     profileImage
@@ -257,14 +312,19 @@ const SignUp: FC = () => {
                     onPress={() => setProfileModalVisible(true)}>
                     <Image
                       source={
-                        profileImage ? {uri: profileImage} : Images.ic_profile
+                        profileImage
+                          ? {uri: profileImage}
+                          : Images.ic_profile
                       }
                       style={
-                        profileImage ? styles.profile : styles.placeholderIcon
+                        profileImage
+                          ? styles.profile
+                          : styles.placeholderIcon
                       }
                     />
                   </TouchableOpacity>
                 </View>
+
                 <Modal
                   visible={profileModalVisible}
                   transparent
@@ -283,7 +343,10 @@ const SignUp: FC = () => {
                           size={20}
                           color={Colors.PRIMARY[100]}
                         />
-                        <Text style={styles.optionText}>Camera</Text>
+
+                        <Text style={styles.optionText}>
+                          Camera
+                        </Text>
                       </TouchableOpacity>
 
                       <TouchableOpacity
@@ -294,19 +357,27 @@ const SignUp: FC = () => {
                           size={20}
                           color={Colors.PRIMARY[100]}
                         />
-                        <Text style={styles.optionText}>Gallery</Text>
+
+                        <Text style={styles.optionText}>
+                          Gallery
+                        </Text>
                       </TouchableOpacity>
 
                       <TouchableOpacity
-                        onPress={() => setProfileModalVisible(false)}>
-                        <Text style={styles.cancelText}>Cancel</Text>
+                        onPress={() =>
+                          setProfileModalVisible(false)
+                        }>
+                        <Text style={styles.cancelText}>
+                          Cancel
+                        </Text>
                       </TouchableOpacity>
                     </View>
                   </View>
                 </Modal>
 
                 <View style={{marginTop: hp(2)}}>
-                  <TextView style={[styles.welcomeTitle, {color: textColor}]}>
+                  <TextView
+                    style={[styles.welcomeTitle, {color: textColor}]}>
                     Hello!
                   </TextView>
 
@@ -330,6 +401,7 @@ const SignUp: FC = () => {
                       isRequired
                     />
                   </View>
+
                   {/* Phone Number Input */}
                   <View style={styles.inputContainer}>
                     <CustomPhoneNumberInput
@@ -350,6 +422,7 @@ const SignUp: FC = () => {
                       }}
                     />
                   </View>
+
                   {/* Email Input */}
                   <View style={styles.inputContainer}>
                     <FloatingTextInput
@@ -366,6 +439,7 @@ const SignUp: FC = () => {
                       isRequired
                     />
                   </View>
+
                   {/* Company Code */}
                   <View style={styles.inputContainer}>
                     <FloatingTextInput
@@ -382,6 +456,7 @@ const SignUp: FC = () => {
                       isRequired
                     />
                   </View>
+
                   {/* Employee ID */}
                   <View style={styles.inputContainer}>
                     <FloatingTextInput
@@ -399,7 +474,7 @@ const SignUp: FC = () => {
                     />
                   </View>
 
-                  {/* Profile Picture */}
+                  {/* Profile Picture / ID Proof */}
                   <DocumentPickerComponent
                     onFilesPicked={handleFilesPicked}
                     docType="pdf"
@@ -407,8 +482,10 @@ const SignUp: FC = () => {
                     title="ID Proof (Emirates ID)"
                     label="ID Proof (Emirates ID) *"
                   />
+
                   {/* Address Input */}
-                  {/* <View style={styles.inputContainer}>
+                  {/*
+                  <View style={styles.inputContainer}>
                     <FloatingTextInput
                       label="Address *"
                       value={values.address}
@@ -421,14 +498,17 @@ const SignUp: FC = () => {
                       touched={touched.address}
                       isRequired
                     />
-                  </View> */}
+                  </View>
+                  */}
+
                   <View style={mapStyles.wrapper}>
-                    {/* ✅ Compact Location Preview */}
+                    {/* Compact Location Preview */}
                     <View style={mapStyles.previewCard}>
                       <View style={mapStyles.textContainer}>
                         <Text style={mapStyles.label}>
                           LOCATION INFORMATION
                         </Text>
+
                         <Text
                           numberOfLines={3}
                           style={mapStyles.addressPreview}>
@@ -444,9 +524,11 @@ const SignUp: FC = () => {
                         <Image
                           source={{
                             uri: `https://maps.googleapis.com/maps/api/staticmap?center=${
-                              confirmedRegion?.latitude || region?.latitude
+                              confirmedRegion?.latitude ||
+                              region?.latitude
                             },${
-                              confirmedRegion?.longitude || region?.longitude
+                              confirmedRegion?.longitude ||
+                              region?.longitude
                             }&zoom=15&size=150x100&key=AIzaSyD2IZNv1mMW3vkvFosW3EdCGgp8_9zTc30`,
                           }}
                           style={mapStyles.miniMap}
@@ -454,36 +536,34 @@ const SignUp: FC = () => {
                       </TouchableOpacity>
                     </View>
 
-                    {/* 🗺️ Full Screen Map Modal */}
-                    <Modal visible={modalVisible} animationType="slide">
+                    {/* Full Screen Map Modal */}
+                    <Modal
+                      visible={modalVisible}
+                      animationType="slide">
                       <View style={mapStyles.modalContainer}>
                         {true && (
                           <>
                             <MapView
                               ref={mapRef}
                               style={mapStyles.fullMap}
-                              // region={region}
-                              onRegionChangeComplete={onRegionChange} // ✅ This is what you need
-                              // showsUserLocation
+                              onRegionChangeComplete={onRegionChange}
                             />
 
-                            {/* 📍 Pin */}
+                            {/* Pin */}
                             <Image
                               source={{
                                 uri: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
                               }}
                               style={mapStyles.centerPin}
                             />
-                            {/* <TouchableOpacity
-                              style={mapStyles.locateBtn}
-                              onPress={getCurrentLocation}>
-                              <Text style={mapStyles.locateText}>📍</Text>
-                            </TouchableOpacity> */}
 
-                            {/* 🧭 Address */}
+                            {/* Address */}
                             <View style={mapStyles.addressBox}>
                               {loadingAddress ? (
-                                <ActivityIndicator size="small" color="#333" />
+                                <ActivityIndicator
+                                  size="small"
+                                  color="#333"
+                                />
                               ) : (
                                 <Text style={mapStyles.addressText}>
                                   {address}
@@ -491,7 +571,7 @@ const SignUp: FC = () => {
                               )}
                             </View>
 
-                            {/* ✅ Confirm */}
+                            {/* Confirm */}
                             <TouchableOpacity
                               style={mapStyles.confirmBtn}
                               onPress={confirmLocation}>
@@ -508,23 +588,28 @@ const SignUp: FC = () => {
                   {/* Terms and Conditions */}
                   <TermsToggle
                     accepted={acceptedTerms}
-                    onToggle={() => setAcceptedTerms(prev => !prev)}
+                    onToggle={() =>
+                      setAcceptedTerms(prev => !prev)
+                    }
                   />
                 </View>
               </View>
             </ScrollView>
           </View>
+
           <View style={styles.actionButton}>
             <Button
               title={'SIGN UP'}
               onPress={handleSubmit}
               style={{borderRadius: 12}}
             />
+
             <TouchableOpacity
               activeOpacity={0.9}
               onPress={() => navigation.navigate('SignIn')}>
               <TextView style={styles.accountTitle}>
                 Already have an account?{' '}
+
                 <TextView
                   style={{
                     color: Colors.PRIMARY[100],
@@ -539,6 +624,7 @@ const SignUp: FC = () => {
           </View>
         </View>
       </SafeAreaView>
+
       <VerifyOTPModal
         visible={otpModalVisible}
         onClose={() => setOtpModalVisible(false)}
@@ -549,6 +635,8 @@ const SignUp: FC = () => {
           email: values?.email,
           userName: values?.userName,
           address: values?.address,
+          companyCode: values?.companyCode,
+          employeeID: values?.employeeID,
           countryCode: values?.countryCode,
           deviceId: 's89auja98suda98sud--as90ajs',
           region,
@@ -556,12 +644,14 @@ const SignUp: FC = () => {
         isAuthFor="register"
         region={region}
       />
+
       <Loader visible={isLoading} />
     </KeyboardAvoidingView>
   );
 };
 
 export default SignUp;
+
 const mapStyles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -569,6 +659,7 @@ const mapStyles = StyleSheet.create({
     marginTop: moderateScale(14),
     marginBottom: moderateScale(14),
   },
+
   previewCard: {
     flexDirection: 'row',
     borderRadius: 12,
@@ -576,46 +667,55 @@ const mapStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
+
   textContainer: {
     flex: 1,
     paddingRight: 12,
   },
+
   label: {
     color: Colors.PRIMARY[200],
     marginBottom: 4,
     fontSize: scale(11),
     fontFamily: Fonts.Medium,
   },
+
   addressPreview: {
     fontSize: 14,
     color: '#333',
     fontFamily: Fonts.Bold,
   },
+
   cityLabel: {
     fontSize: 13,
     color: '#555',
     marginTop: 6,
     fontFamily: Fonts.Medium,
   },
+
   miniMap: {
     width: 100,
     height: 80,
     borderRadius: 8,
     marginBottom: 4,
   },
+
   edit: {
     textAlign: 'center',
     fontSize: 12,
     color: Colors.ACCENT,
     fontFamily: Fonts.Medium,
   },
+
   modalContainer: {
     flex: 1,
   },
+
   fullMap: {
     width: '100%',
     height: '100%',
   },
+
   centerPin: {
     position: 'absolute',
     top: height / 2 - 24,
@@ -625,6 +725,7 @@ const mapStyles = StyleSheet.create({
     zIndex: 10,
     tintColor: Colors.PRIMARY[100],
   },
+
   addressBox: {
     position: 'absolute',
     top: Platform.OS === 'ios' ? hp(8) : hp(5),
@@ -635,11 +736,13 @@ const mapStyles = StyleSheet.create({
     elevation: 4,
     width: '90%',
   },
+
   addressText: {
     fontSize: 14,
     color: '#333',
     fontFamily: Fonts.Medium,
   },
+
   locateBtn: {
     position: 'absolute',
     bottom: 100,
@@ -649,11 +752,13 @@ const mapStyles = StyleSheet.create({
     borderRadius: 30,
     elevation: 3,
   },
+
   locateText: {
     fontWeight: 'bold',
     fontSize: 13,
     fontFamily: Fonts.Medium,
   },
+
   confirmBtn: {
     position: 'absolute',
     bottom: 30,
@@ -663,6 +768,7 @@ const mapStyles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 30,
   },
+
   confirmText: {
     color: 'white',
     fontWeight: 'bold',

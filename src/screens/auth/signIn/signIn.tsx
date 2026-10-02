@@ -124,7 +124,7 @@ const SignIn = () => {
     if (RememberMe) {
       setFieldValue('email', username);
       setFieldValue('phoneNumber', phoneNumber);
-      setFieldValue('countryCode', '+91');
+      setFieldValue('countryCode', '');
       setRememberMe(true);
     }
   };
@@ -239,7 +239,19 @@ const SignIn = () => {
               <TouchableOpacity style={styles.iconCircle}>
                 <Image source={Images.ic_google} style={styles.icon} />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.iconCircle}>
+              <TouchableOpacity
+                style={styles.iconCircle}
+                onPress={() => {
+                  setFieldValue('email', '');
+                  if (values.phoneNumber) {
+                    handleSubmit();
+                  } else {
+                    callError({
+                      message: 'Please enter your phone number first.',
+                      isDelayModal: true,
+                    });
+                  }
+                }}>
                 <Image
                   source={Images.ic_Contact}
                   style={[styles.icon, {tintColor: Colors.PRIMARY[100]}]}
