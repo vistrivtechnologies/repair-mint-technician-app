@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   FlatList,
   TouchableOpacity,
   ScrollView,
@@ -17,10 +16,12 @@ import Icon from '../../../constant/Icon';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Header} from '../../../components';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface Notification {
   id: string;
   type: 'add' | 'cancel';
+  category: 'Reminders' | 'Payment' | 'Booking';
   title: string;
   description: string;
   customerName: string;
@@ -38,11 +39,13 @@ type NotificationScreenNavigationType = NativeStackNavigationProp<
 const NotificationScreen: React.FC = () => {
   const navigation = useNavigation<NotificationScreenNavigationType>();
   const {isDarkMode} = useContext<UserData>(UserDataContext);
+  const [selectedFilter, setSelectedFilter] = React.useState('All');
 
   const notifications: Notification[] = [
     {
       id: '1',
       type: 'add',
+      category: 'Booking',
       title: 'Add Booking',
       description: 'New Booking Added by',
       customerName: 'Amit Pandey',
@@ -54,6 +57,7 @@ const NotificationScreen: React.FC = () => {
     {
       id: '2',
       type: 'cancel',
+      category: 'Booking',
       title: 'Cancel Booking',
       description: 'New Booking Added by',
       customerName: 'Stan Dupp',
@@ -65,6 +69,7 @@ const NotificationScreen: React.FC = () => {
     {
       id: '3',
       type: 'add',
+      category: 'Reminders',
       title: 'Add Booking',
       description: 'New Booking Added by',
       customerName: 'Anna Domino',
@@ -76,6 +81,7 @@ const NotificationScreen: React.FC = () => {
     {
       id: '4',
       type: 'cancel',
+      category: 'Reminders',
       title: 'Cancel Booking',
       description: 'New Booking Added by',
       customerName: 'Albert Watson',
@@ -87,6 +93,7 @@ const NotificationScreen: React.FC = () => {
     {
       id: '5',
       type: 'add',
+      category: 'Payment',
       title: 'Add Booking',
       description: 'New Booking Added by',
       customerName: 'Mustafa Leek',
@@ -98,6 +105,7 @@ const NotificationScreen: React.FC = () => {
     {
       id: '6',
       type: 'cancel',
+      category: 'Payment',
       title: 'Cancel Booking',
       description: 'New Booking Added by',
       customerName: 'Mary Krismass',
@@ -108,10 +116,33 @@ const NotificationScreen: React.FC = () => {
     },
   ];
 
+  const getNotificationIcon = (category: Notification['category']) => {
+    if (category === 'Payment') return 'card-outline';
+    if (category === 'Reminders') return 'notifications-outline';
+    return 'calendar-outline';
+  };
+
+  const getNotificationIconStyle = (category: Notification['category']) => {
+    if (category === 'Payment') return styles.paymentIcon;
+    if (category === 'Reminders') return styles.reminderIcon;
+    return styles.bookingIcon;
+  };
+
+  const filteredNotifications = notifications.filter(
+    notification =>
+      selectedFilter === 'All' || notification.category === selectedFilter,
+  );
+  const newNotifications = filteredNotifications.filter(n => n.isNew);
+  const earlierNotifications = filteredNotifications.filter(n => !n.isNew);
+
   const renderNotificationItem = ({item}: {item: Notification}) => (
     <TouchableOpacity key={item.id} style={styles.notificationItem}>
-      <View style={styles.avatarContainer}>
-        <Text style={styles.avatar}>{item.avatar}</Text>
+      <View style={[styles.avatarContainer, getNotificationIconStyle(item.category)]}>
+        <Ionicons
+          name={getNotificationIcon(item.category)}
+          size={22}
+          color={Colors.WHITE}
+        />
       </View>
       <View style={styles.notificationContent}>
         <View style={styles.notificationHeader}>
@@ -126,9 +157,6 @@ const NotificationScreen: React.FC = () => {
     </TouchableOpacity>
   );
 
-  const newNotifications = notifications.filter(n => n.isNew);
-  const earlierNotifications = notifications.filter(n => !n.isNew);
-
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -136,6 +164,28 @@ const NotificationScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: heightPercentageToDP(2)}}>
         <Header title="Notification" />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterRow}>
+          {['All', 'Reminders', 'Payment', 'Booking'].map(filter => (
+            <TouchableOpacity
+              key={filter}
+              style={[
+                styles.filterChip,
+                selectedFilter === filter && styles.filterChipActive,
+              ]}
+              onPress={() => setSelectedFilter(filter)}>
+              <Text
+                style={[
+                  styles.filterText,
+                  selectedFilter === filter && styles.filterTextActive,
+                ]}>
+                {filter}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
 
         {/* New Notifications */}
         <View style={styles.section}>

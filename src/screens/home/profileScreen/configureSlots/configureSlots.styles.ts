@@ -10,14 +10,14 @@ const styles = StyleSheet.create({
   container: {
     height: 52,
     borderWidth: 1,
-    backgroundColor: '#e6e6e6',
+    backgroundColor: Colors.LIGHT_GREY_3,
     borderColor: 'transparent',
     borderRadius: 8,
     overflow: 'hidden',
     marginHorizontal: moderateScale(14),
   },
   weeklyHours: {
-    color: Colors.BLACK,
+    color: Colors.HEADING,
     fontSize: moderateScale(18),
     paddingHorizontal: moderateScale(14),
     paddingVertical: moderateScale(10),
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     color: Colors.PRIMARY[100],
     fontFamily: Fonts.SemiBold,
     fontSize: moderateScale(15),
-    backgroundColor: '#ececff',
+    backgroundColor: Colors.PRIMARY[600],
     borderColor: Colors.PRIMARY[100],
     borderWidth: 0.8,
     padding: moderateScale(10),
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   modal: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     borderRadius: 12,
     maxHeight: '70%',
     paddingVertical: 16,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   closeText: {
     fontSize: 16,
-    color: '#007AFF',
+    color: Colors.SECONDARY[100],
   },
   buttonFlex: {
     display: 'flex',
@@ -116,9 +116,9 @@ const styles = StyleSheet.create({
   cancelText: {
     marginTop: hp('1%'),
     fontSize: 16,
-    color: '#3366FF',
+    color: Colors.SECONDARY[100],
     textAlign: 'center',
-    backgroundColor: '#ececff',
+    backgroundColor: Colors.PRIMARY[600],
     paddingVertical: moderateScale(12),
     borderRadius: 10,
     width: 160,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('5%'),
   },
   modalContent: {
-    backgroundColor: '#FFF',
+    backgroundColor: Colors.WHITE,
     borderRadius: 12,
     padding: wp('5%'),
     maxHeight: hp('80%'),
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 22,
     marginBottom: hp('0.5%'),
-    color: Colors.BLACK,
+    color: Colors.HEADING,
     fontFamily: Fonts.SemiBold,
   },
   chooseSlot: {
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   slotDisabled: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: '#CCC',
+    borderColor: Colors.LIGHT_GREY,
   },
   slotSelected: {
     backgroundColor: Colors.PRIMARY[100],  // same blue for selected
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   textDisabled: {
-    color: '#999',
+    color: Colors.GREY,
   },
 //   textSelected: {
 //     color: '#FFF',

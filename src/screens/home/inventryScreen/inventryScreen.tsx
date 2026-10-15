@@ -40,10 +40,10 @@ type InventryScreenNavigationType = NativeStackNavigationProp<
 
 const getStatus = (qty: number) => {
   if (qty === 0)
-    return {label: 'Out of Stock', color: '#ff5252', icon: 'close-circle'};
+    return {label: 'Out of Stock', color: Colors.STATUS.DANGER, icon: 'close-circle-outline'};
   if (qty <= 3)
-    return {label: 'Low Stock', color: '#ffab40', icon: 'alert-circle'};
-  return {label: 'In Stock', color: '#66bb6a', icon: 'checkmark-circle'};
+    return {label: 'Low Stock', color: Colors.STATUS.WARNING, icon: 'alert-circle-outline'};
+  return {label: 'In Stock', color: Colors.STATUS.SUCCESS, icon: 'check-circle-outline'};
 };
 
 const InventryScreen: React.FC = props => {
@@ -162,6 +162,7 @@ const InventryScreen: React.FC = props => {
               <TouchableOpacity
                 style={styles.addButton}
                 onPress={() => handleAddPress(item)}>
+                <Ionicons name="add-circle-outline" size={16} color={Colors.WHITE} />
                 <Text style={styles.addButtonText}>Add</Text>
               </TouchableOpacity>
 
@@ -170,7 +171,7 @@ const InventryScreen: React.FC = props => {
                 <Ionicons
                   name={status.icon}
                   size={16}
-                  color="#fff"
+                  color={Colors.WHITE}
                   style={styles.statusIcon}
                 />
                 <Text style={styles.statusText}>{status.label}</Text>

@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {
-  heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from '../../constant/dimentions';
 import {Colors, Fonts} from '../../constant';
@@ -12,19 +11,19 @@ import {
 
 const styles = StyleSheet.create({
   labelText: {
-    color: Colors.PRIMARY[200],
+    color: Colors.HEADING,
     fontFamily: Fonts.Medium,
-    fontSize: scale(12),
+    fontSize: scale(11),
     marginBottom: moderateVerticalScale(7),
     marginLeft: wp(0.5),
-    fontWeight: '500',
+    letterSpacing: 0.4,
   },
 
   input: {
-    color: Colors.SECONDARY[400],
+    color: Colors.HEADING,
     fontFamily: Fonts.Regular,
     paddingLeft: wp(3),
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(14),
   },
   label: {
     color: Colors.SECONDARY[400],

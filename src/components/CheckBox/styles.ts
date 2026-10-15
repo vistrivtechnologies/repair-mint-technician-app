@@ -16,7 +16,7 @@ const styles = StyleSheet.create( {
     },
     title: {
         left: 10,
-        color: Colors.PRIMARY[ 100 ],
+        color: Colors.HEADING,
         fontFamily: Fonts.Medium,
         fontSize: scale( 12 ),
     },

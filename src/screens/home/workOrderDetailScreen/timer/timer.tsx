@@ -192,7 +192,7 @@ const Timer = ({
             <TouchableOpacity
               style={[
                 styles.actionButton,
-                {backgroundColor: 'green'},
+                {backgroundColor: Colors.SECONDARY[100]},
               ]}
               onPress={() => handleUpdateSR('completed')}>
               <Icon family="FontAwesome" name="check" size={24} color="#fff" />
@@ -215,7 +215,7 @@ const Timer = ({
             <TouchableOpacity
               style={[
                 styles.actionButton,
-                {backgroundColor: 'red'},
+                {backgroundColor: Colors.STATUS.DANGER},
               ]}
               onPress={() => {
                 setCommentModalVisible(true);

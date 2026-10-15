@@ -1,41 +1,42 @@
 const Colors = {
-  //color scheme -
-  BLACK: '#000',
-  WHITE: '#fff',
-  GREY: '#7C8091',
-  LIGHT_GREY: '#D9D9D9',
-  LIGHT_GREY_2: '#F4F6F9',
-  LIGHT_GREY_3: '#ececec',
-  HEADING: "#1C1F34",
-  BODY: "#6C757D",
-  BORDERCOLOR: "#EBEBEB",
+  BLACK: '#000000',
+  WHITE: '#FFFFFF',
+  GREY: '#7D8794',
+  LIGHT_GREY: '#E6ECEA',
+  LIGHT_GREY_2: '#F5F7F8',
+  LIGHT_GREY_3: '#EEF2F1',
+  HEADING: '#1D2B3A',
+  BODY: '#7D8794',
+  BORDERCOLOR: '#E6ECEA',
   PRIMARY: {
-    100: '#7444fd',
-    200: '#6C757D',
-    300: '#F6F7F9',//Background Color
-    400: '#000000',
-    500: '#5a5959',
-    600: '#eff1fb',
-    700: '#dadee9',
-    800: '#e3e3e3cc'
+    100: '#0B2C4D',
+    200: '#7D8794',
+    300: '#F7F8FA',
+    400: '#0E3150',
+    500: '#1D2B3A',
+    600: '#E1F8EF',
+    700: '#BDEFD9',
+    800: '#E6ECEA',
   },
 
   SECONDARY: {
-    100: '#321a8c', //Enable
-    200: '#c1bfbf ', //Disable
-    300: '#5a5959 ', //Input
-    400: '#4B5569',
-    500: '#ECECEC',
-    600: '#ff6b04',
-    700: '#4a4d50',
+    100: '#25C79A',
+    200: '#B7C4C6',
+    300: '#F5F7F8',
+    400: '#304B5D',
+    500: '#E8EFED',
+    600: '#F4B000',
+    700: '#4A626F',
   },
+  ACCENT: '#2F66E8',
+  BRAND_BLUE: '#079BEA',
   PRIMARYRGB: {
     100: 'rgba(255, 255, 255,0.7)',
   },
   NEUTRAL: {
     100: '#FFFFFF',
-    200: '#ECECEC',
-    300: '#4B5569',
+    200: '#E8EFED',
+    300: '#4B626F',
   },
 
   FLOATINGINPUT: {
@@ -45,18 +46,28 @@ const Colors = {
   },
 
   SUCCESS: {
-    100: '#37871A',
-    200: '#008000',
+    100: '#22C55E',
+    200: '#168A4A',
   },
 
   ERROR: {
-    100: '#8D0E0E',
-    200: '#A12861',
-    300: '#e91111',
+    100: '#EF4B4B',
+    200: '#B93655',
+    300: '#D93030',
+  },
+  STATUS: {
+    SUCCESS: '#22C55E',
+    SUCCESS_SOFT: '#E1F8EF',
+    WARNING: '#F4B000',
+    WARNING_SOFT: '#FFF4D6',
+    INFO: '#2F66E8',
+    INFO_SOFT: '#E5EDFF',
+    DANGER: '#EF4B4B',
+    DANGER_SOFT: '#FDE4E4',
   },
   TABBUTTONGREDEIENT: {
-    100: '#fa4da4',
-    200: '#2a1fa1',
+    100: '#079BEA',
+    200: '#0B2C4D',
   },
 };
 export default Colors;
